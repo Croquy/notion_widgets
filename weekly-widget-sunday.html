@@ -173,9 +173,10 @@ h1 {
 
 <!-- Greetings and date -->
 <script>
-    function date() {
-var today = new Date();
-document.getElementById('date').innerHTML = today.toLocaleDateString("fr-FR");
+function date() {
+    var today = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('date').innerHTML = today.toLocaleDateString("fr-FR",options);
 }
 
 
