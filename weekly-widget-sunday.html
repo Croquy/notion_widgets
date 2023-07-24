@@ -14,7 +14,7 @@
 
  <style>
 body{
-    background-color: #fff;
+
     line-height: 1.6;
     text-align: center;
     font-family: 'Fjalla One', sans-serif;
@@ -139,7 +139,7 @@ h1 {
               <div class="colon">:</div>
               <div class="time" id="sec"></div>
             </div>
-            <a class="weatherwidget-io" href="https://forecast7.com/en/31d2029d92/alexandria/" data-label_1="VILLEFRANCHE-SUR-SAONE" data-label_2="WEATHER" data-days="5" data-theme="kiwi" >Météo</a>
+            <a class="weatherwidget-io" href="https://forecast7.com/en/31d2029d92/alexandria/" data-label_1="VILLEFRANCHE-SUR-SAONE" data-days="5" data-theme="kiwi" >Météo</a>
 
           </div>
           
@@ -194,11 +194,11 @@ else{
 }
 hrs = today.getHours();
 if (hrs < 12)
-        greet = 'Good Morning  ';
+        greet = 'Bonjour ';
     else if (hrs >= 12 && hrs <= 17)
-        greet = 'Good Afternoon ';
+        greet = 'Bon après midi ';
     else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening  ';
+        greet = 'Bonsoir  ';
 // console.log(today.toLocaleTimeString());
 document.getElementById('greet').innerHTML = greet;
 document.getElementById('hour').innerHTML = hour;
@@ -252,9 +252,18 @@ dateTime()
     minutes = 59 - now.getMinutes();
     left_days.innerHTML = days + "<br> <span style=\"color:#f58f70\" class=\"small\"> days </span>"
     left_hours.innerHTML = hours + "<br> <span style=\"color:#5ebcfc\" class=\"small\"> hours</span>";
-    left_minutes.innerHTML = minutes + "<br> <span style=\"color:##dcdcdc\" class=\"small\">mins</span>";
+    left_minutes.innerHTML = currentWeek() + "<br> <span style=\"color:##dcdcdc\" class=\"small\">mins</span>";
     }
-
+    function currentWeek(){
+      var date = new Date(year, month, 0).getDate();
+      date.setHours(0, 0, 0, 0);
+      // Thursday in current week decides the year.
+      date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+      // January 4 is always in week 1.
+      var week1 = new Date(date.getFullYear(), 0, 4);
+      // Adjust to Thursday in week 1 and count number of weeks from date to week1.
+      return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+    }
 timer = setInterval (showRemaining, 1000) 
 CountDownTimer() ;
 </script>
