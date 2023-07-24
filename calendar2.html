@@ -148,17 +148,17 @@ function CalendarControl() {
   const calendar = new Date();
   const calendarControl = {
     localDate: new Date(),
-    calWeekDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    calWeekDays: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
     calMonthName: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
+      "Janvier",
+      "Fevrier",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Aout",
+      "Sept",
       "Oct",
       "Nov",
       "Dec"
@@ -230,7 +230,7 @@ function CalendarControl() {
       </div>
       <div class="calendar-next"><a href="#">></a></div>
       </div>
-      <div class="calendar-today-date">Today: 
+      <div class="calendar-today-date">S:  ${calendarControl.localDate.getWeek()}, 
         ${calendarControl.calWeekDays[calendarControl.localDate.getDay()]}, 
         ${calendarControl.localDate.getDate()}, 
         ${calendarControl.calMonthName[calendarControl.localDate.getMonth()]} 
