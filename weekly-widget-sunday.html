@@ -175,21 +175,16 @@ h1 {
 <script>
     function date() {
 var today = new Date();
-document.getElementById('date').innerHTML = today.toDateString();
+document.getElementById('date').innerHTML = today.toLocaleDateString("fr-FR");
 }
 
 
 function clock() {
-var today = new Date().toLocaleDateString("fr");
-var hour = zeros(twelveHour(today.getHours()));
+var today = new Date();
+var hour = zeros(today.getHours());
 var minutes = zeros(today.getMinutes());
 var seconds = zeros(today.getSeconds());
-if(today.getHours() >=12){
-    seconds+=" pm"
-}
-else{
-    seconds+=" am"
-}
+
 hrs = today.getHours();
 if (hrs < 12)
         greet = 'Bonjour ';
@@ -204,15 +199,7 @@ document.getElementById('min').innerHTML = minutes;
 document.getElementById('sec').innerHTML = seconds;
 }
 
-function twelveHour(hour) {
-if (hour > 12) {
-    return hour -= 12 
-} else if (hour === 0) {
-    return hour = 12;
-} else {
-    return hour
-}
-}
+
     
 // adds zero infront of single digit number
 function zeros(num) {
@@ -251,15 +238,13 @@ dateTime()
     left_days.innerHTML = days + "<br> <span style=\"color:#f58f70\" class=\"small\"> Jours </span>"
     left_hours.innerHTML = hours + "<br> <span style=\"color:#5ebcfc\" class=\"small\"> hours</span>";
     left_minutes.innerHTML = minutes + "<br> <span style=\"color:##dcdcdc\" class=\"small\">mins</span>";
-    current_week.innerHTML =   "<br> <span style=\"color:##dcdcdc\" class=\"small\">Semaine :"+currentWeek()+"</span>";
+    current_week.innerHTML =   "Semaine :"+currentWeek();
     }
     function currentWeek(){
-     
         currentDate = new Date();
         startDate = new Date(currentDate.getFullYear(), 0, 1);
         var days = Math.floor((currentDate - startDate) /
             (24 * 60 * 60 * 1000));
-         
         return weekNumber = Math.ceil(days / 7);
     }
 timer = setInterval (showRemaining, 1000) 
