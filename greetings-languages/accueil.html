@@ -10,10 +10,13 @@
     <title>weekly widget</title>
 
 </head>
-<body class="aurora">
+<body >
 
-   
-<div class="content">
+   	<div class="aurora_holder">
+			<div class="aurora-1"></div>
+		</div>
+		
+<div class="overlay">
 
     <div class="full-table">
         <div class="table-cell" style="width: 70%;">
@@ -81,7 +84,6 @@ if (hrs < 12)
         greet = 'Bon après midi ';
     else if (hrs >= 17 && hrs <= 24)
         greet = 'Bonsoir  ';
-// console.log(today.toLocaleTimeString());
 document.getElementById('greet').innerHTML = greet;
 document.getElementById('hour').innerHTML = hour;
 document.getElementById('min').innerHTML = minutes;
