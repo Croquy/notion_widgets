@@ -1,150 +1,110 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Bebas+Neue" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
-<link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>weekly widget</title>
 
 </head>
-<body >
 
-   	<div class="aurora_holder">
-			<div class="aurora-1"></div>
-		</div>
-		
-<div class="overlay">
+<body>
+    <div class="container">
 
-    <div class="full-table">
-        <div class="table-cell" style="width: 70%;">
-          
-          <div class="card">
-              <div class="greet" id="greet"></div>
-            <div class="date" id="date"></div>
-            <div class="clock">
-              <div class="time" id="hour"></div>
-              <div class="colon">:</div>
-              <div class="time" id="min"></div>
-              <div class="colon">:</div>
-              <div class="time" id="sec"></div>
-            </div>
-            <a class="weatherwidget-io" href="https://forecast7.com/fr/45d994d72/villefranche-sur-saone/" data-label_1="VILLEFRANCHE-SUR-SAONE" data-font="Open Sans" data-icons="Climacons Animated" data-days="5" data-theme="hexellence" data-textcolor="#64a9b7" data-suncolor="#feffa4" data-cloudcolor="#93b8ed" >VILLEFRANCHE-SUR-SAONE</a>
-          </div>
-          
-        </div>
-        <div class="table-cell" style="width: 30%;">
-          
-            <div class="card">
+        <div class="row">
+            <div class="col-8">
+                <div class="widget">
 
-                <div class="counter" id="counter">
-      
-                    <h3 class="h3" id="semaine"></h3>
-                    <h2 class="box" id="days"></h2>
+                    <div id="date"></div>
+                    <h3 id="greet"></h3>
+                    <h3 class="box" id="semaine"></h3>
+                    <h2 id="days"></h2>
                     <h2 class="box" id="hours"></h2>
                     <h2 class="box" id="minutes"></h2>
+                    <h2 class="box" id="secondes"></h2>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="widget">
+                    <a class="weatherwidget-io" href="https://forecast7.com/fr/45d994d72/villefranche-sur-saone/"
+                        data-label_1="VILLEFRANCHE-SUR-SAONE" data-font="Open Sans" data-icons="Climacons Animated"
+                        data-days="5" data-theme="hexellence" data-textcolor="#64a9b7" data-suncolor="#feffa4"
+                        data-cloudcolor="#93b8ed">VILLEFRANCHE-SUR-SAONE</a>
 
                 </div>
-          
             </div>
-            
-          </div>
-      </div>
-      
-      
-      <!-- ------------------------------- -->
-      
-
-</div>
+        </div>
+    </div>
 
 
-<!-- --------------------------------- Scripts----------------------------- -->
 
-<!-- Greetings and date -->
-<script>
-function date() {
-    var today = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('date').innerHTML = today.toLocaleDateString("fr-FR",options);
-}
+    <!-- --------------------------------- Scripts----------------------------- 
+
+    <script src="https://cdn.jsdelivr.net/npm/muuri@0.9.5/dist/muuri.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web-animations-js@2.3.2/web-animations.min.js"></script>
+          var grid = new Muuri('.grid', {
+  dragEnabled: true,
+  layout: { horizontal: true }
+});
+       -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Greetings and date -->
+    <script>
+        function date() {
+            var today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date').innerHTML = today.toLocaleDateString("fr-FR", options);
+        }
+
+        let days = document.querySelector("#days");
+        let hours = document.querySelector("#hours");
+        let minutes = document.querySelector("#minutes");
+        let seconds = document.querySelector("#secondes");
+        let greete = document.querySelector("#greet");
+        let semaine = document.querySelector("#semaine");
+        setInterval(() => {
+            date();
+            let now = new Date();
+            let hour = now.getHours();
+            let min = now.getMinutes().toString().padStart(2, '0');
+            let sec = now.getSeconds().toString().padStart(2, '0');
+            let greet = 'Bonjour ';
+            if (hour >= 12 && hour <= 17)
+                greet = 'Bon après midi ';
+            else if (hour >= 17 && hour <= 24)
+                greet = 'Bonsoir  ';
+            greete.innerHTML = `${greet} `;
+            semaine.innerHTML = `S ${currentWeek()}`;
+            hours.innerHTML = `${hour.toString().padStart(2, '0')}`;
+            minutes.innerHTML = `${min}`;
+            seconds.innerHTML = `${sec}`;
+        }, 1000)
+
+        function currentWeek() {
+            currentDate = new Date();
+            startDate = new Date(currentDate.getFullYear(), 0, 1);
+            var days = Math.floor((currentDate - startDate) /
+                (24 * 60 * 60 * 1000));
+            return weekNumber = Math.ceil(days / 7);
+        }
 
 
-function clock() {
-var today = new Date();
-var hour = zeros(today.getHours());
-var minutes = zeros(today.getMinutes());
-var seconds = zeros(today.getSeconds());
+    </script>
 
-hrs = today.getHours();
-if (hrs < 12)
-        greet = 'Bonjour ';
-    else if (hrs >= 12 && hrs <= 17)
-        greet = 'Bon après midi ';
-    else if (hrs >= 17 && hrs <= 24)
-        greet = 'Bonsoir  ';
-document.getElementById('greet').innerHTML = greet;
-document.getElementById('hour').innerHTML = hour;
-document.getElementById('min').innerHTML = minutes;
-document.getElementById('sec').innerHTML = seconds;
-}
-
-
-    
-// adds zero infront of single digit number
-function zeros(num) {
-if (num < 10) {
-    num = '0' + num
-};
-return num;
-}
-
-function dateTime() {
-date();
-clock();
-setTimeout(dateTime, 500);
-}
-
-dateTime()
-// END
-</script>
-
-<!------------ Time Left ------------------>
-
-<script>
-    function CountDownTimer  () {
-    left_days = document.getElementById("days");
-    left_hours = document.getElementById("hours");
-    left_minutes = document.getElementById("minutes");
-    current_week = document.getElementById("semaine");
-    }
-    function showRemaining (){
-    now = new Date();
-    // days_in_this_month = new Date( now.getFullYear(), now.getMonth()+1, 0).getDate(); 
-    // week starts on sunday
-    days = 6 - now.getDay();
-    hours = 23 - now.getHours();
-    minutes = 59 - now.getMinutes();
-    left_days.innerHTML = days + "<br> <span style=\"color:#f58f70\" class=\"small\"> Jours </span>"
-    left_hours.innerHTML = hours + "<br> <span style=\"color:#5ebcfc\" class=\"small\"> hours</span>";
-    left_minutes.innerHTML = minutes + "<br> <span style=\"color:##dcdcdc\" class=\"small\">mins</span>";
-    current_week.innerHTML =   "Semaine :"+currentWeek();
-    }
-    function currentWeek(){
-        currentDate = new Date();
-        startDate = new Date(currentDate.getFullYear(), 0, 1);
-        var days = Math.floor((currentDate - startDate) /
-            (24 * 60 * 60 * 1000));
-        return weekNumber = Math.ceil(days / 7);
-    }
-timer = setInterval (showRemaining, 1000) 
-CountDownTimer() ;
-</script>
-
-<!-- forcast -->
-<script>
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    <!-- forcast -->
+    <script>
+        !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
     </script>
 </body>
+
 </html>
