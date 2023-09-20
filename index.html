@@ -115,10 +115,7 @@
     </style>
   </head>
   <body>
-    <link
-    href="style.css"
-    rel="stylesheet"
-  />
+    <link href="style.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700"
       rel="stylesheet"
@@ -167,36 +164,10 @@
 
     <script>
 
-      const hours = document.querySelector('.hours');
-      const minutes = document.querySelector('.minutes');
-      const seconds = document.querySelector('.seconds');
-      const horloge = document.querySelector('.horloge');
-      clock = () => {
-        let today = new Date();
-        let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
-        let m = today.getMinutes(); // 0 - 59
-        let s = today.getSeconds(); // 0 - 59
-        horloge.innerText =today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-        h *= 30; // 12 * 30 = 360deg
-        m *= 6;
-        s *= 6; // 60 * 6 = 360deg
-
-        rotation(hours, h);
-        rotation(minutes, m);
-        rotation(seconds, s);
-
-        // call every second
-        setTimeout(clock, 500);
-      }
-
-      rotation = (target, val) => {
-        target.style.transform =  'rotate(${val}deg)';
-      }
-
-      window.onload = clock();
 
 
-      
+
+
       var url = "https://kayoo123.github.io/astroo-api/jour.json";
 
 
@@ -208,7 +179,10 @@
         list.appendChild(item);
       }
       document.getElementById("demoA").appendChild(list);
-
+      const hours = document.querySelector('.hours');
+      const minutes = document.querySelector('.minutes');
+      const seconds = document.querySelector('.seconds');
+      const horloge = document.querySelector('.horloge');
             function date() {
               var today = new Date();
               document.getElementById("date").innerHTML = today.toDateString();
@@ -216,14 +190,9 @@
 
             function clock() {
               var today = new Date();
-              var hour = zeros(twelveHour(today.getHours()));
+              var hour = zeros(today.getHours()));
               var minutes = zeros(today.getMinutes());
               var seconds = zeros(today.getSeconds());
-              if (today.getHours() >= 12) {
-                seconds += " pm";
-              } else {
-                seconds += " am";
-              }
               hrs = today.getHours();
               if (hrs < 12) greet = "Good Morning  ";
               else if (hrs >= 12 && hrs <= 17) greet = "Good Afternoon ";
@@ -233,17 +202,20 @@
               document.getElementById("hour").innerHTML = hour;
               document.getElementById("min").innerHTML = minutes;
               document.getElementById("sec").innerHTML = seconds;
+              let today = new Date();
+        let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
+        let m = today.getMinutes(); // 0 - 59
+        let s = today.getSeconds(); // 0 - 59
+        horloge.innerText =today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+        h *= 30; // 12 * 30 = 360deg
+        m *= 6;
+        s *= 6; // 60 * 6 = 360deg
+
+        rotation(hours, h);
+        rotation(minutes, m);
+        rotation(seconds, s);
             }
 
-            function twelveHour(hour) {
-              if (hour > 12) {
-                return (hour -= 12);
-              } else if (hour === 0) {
-                return (hour = 12);
-              } else {
-                return hour;
-              }
-            }
             // adds zero infront of single digit number
             function zeros(num) {
               if (num < 10) {
@@ -257,7 +229,11 @@
               clock();
               setTimeout(dateTime, 500);
             }
+      rotation = (target, val) => {
+        target.style.transform =  'rotate(${val}deg)';
+      }
 
+      clock2();
             dateTime();
             // END
     </script>
