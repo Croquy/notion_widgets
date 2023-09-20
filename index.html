@@ -163,14 +163,7 @@
     <div id="demoA"></div>
 
     <script>
-
-
-
-
-
       var url = "https://kayoo123.github.io/astroo-api/jour.json";
-
-
 
       var list = document.createElement("ol");
       for (let i of url) {
@@ -179,63 +172,54 @@
         list.appendChild(item);
       }
       document.getElementById("demoA").appendChild(list);
-      const hours = document.querySelector('.hours');
-      const minutes = document.querySelector('.minutes');
-      const seconds = document.querySelector('.seconds');
-      const horloge = document.querySelector('.horloge');
-            function date() {
-              var today = new Date();
-              document.getElementById("date").innerHTML = today.toDateString();
-            }
-
-            function clock() {
-              var today = new Date();
-              var hour = zeros(today.getHours());
-              var minutes = zeros(today.getMinutes());
-              var seconds = zeros(today.getSeconds());
-              hrs = today.getHours();
-              if (hrs < 12) greet = "Good Morning  ";
-              else if (hrs >= 12 && hrs <= 17) greet = "Good Afternoon ";
-              else if (hrs >= 17 && hrs <= 24) greet = "Good Evening  ";
-              // console.log(today.toLocaleTimeString());
-              document.getElementById("greet").innerHTML = greet;
-              document.getElementById("hour").innerHTML = hour;
-              document.getElementById("min").innerHTML = minutes;
-              document.getElementById("sec").innerHTML = seconds;
-              let today = new Date();
-        let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
-        let m = today.getMinutes(); // 0 - 59
-        let s = today.getSeconds(); // 0 - 59
-        horloge.innerText =today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-        h *= 30; // 12 * 30 = 360deg
-        m *= 6;
-        s *= 6; // 60 * 6 = 360deg
-
-        rotation(hours, h);
-        rotation(minutes, m);
-        rotation(seconds, s);
-            }
-
-            // adds zero infront of single digit number
-            function zeros(num) {
-              if (num < 10) {
-                num = "0" + num;
-              }
-              return num;
-            }
-
-            function dateTime() {
-              date();
-              clock();
-              setTimeout(dateTime, 500);
-            }
-      rotation = (target, val) => {
-        target.style.transform =  'rotate(${val}deg)';
+      const hours = document.querySelector(".hours");
+      const minutes = document.querySelector(".minutes");
+      const seconds = document.querySelector(".seconds");
+      const horloge = document.querySelector(".horloge");
+      function date() {
+        var today = new Date();
+        document.getElementById("date").innerHTML = today.toDateString();
       }
 
-      clock2();
-            dateTime();
-            // END
+      function clock() {
+        var today = new Date();
+        hrs = today.getHours();
+        if (hrs < 12) greet = "Bonjour";
+        else if (hrs >= 12 && hrs <= 17) greet = "Bon après midi ";
+        else if (hrs >= 17 && hrs <= 24) greet = "Bonne soirée  ";
+        document.getElementById("greet").innerHTML = greet;
+        var h = ((today.getHours() % 12) + today.getMinutes() / 59)*30; // 22 % 12 = 10pm
+        horloge.innerText =
+        zeros(today.getHours())+
+          ":" +
+          zeros(today.getMinutes()) +
+          ":" +
+          zeros(today.getSeconds());
+
+        rotation(hours, h);
+        rotation(minutes, today.getMinutes() * 6);
+        rotation(seconds, stoday.getSeconds() * 6);
+      }
+
+      // adds zero infront of single digit number
+      function zeros(num) {
+        if (num < 10) {
+          num = "0" + num;
+        }
+        return num;
+      }
+
+      function dateTime() {
+       // date();
+        clock();
+        setTimeout(dateTime, 500);
+      }
+      rotation = (target, val) => {
+        target.style.transform = 'rotate(${val}deg)';
+      };
+
+      dateTime();
+      // END
     </script>
   </body>
 </html>
