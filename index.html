@@ -79,13 +79,47 @@
         font-size: 1.2em;
       }
     </style>
-     <style>.container {list-style:none;margin: 0;padding: 0;}.item {background: rgba(66, 133, 244, 0.9); padding: 5px;width: 200px;height: 150px;margin: 10px;line-height: 150px;color: white;font-weight: bold;font-size: 2em;text-align: center;border-radius: 10px;}.float {max-width: 700px;margin: 0 auto;}.float:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}.float-item {float: left;}</style>
-   
+    <style>
+      .container {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .item {
+        background: rgba(66, 133, 244, 0.9);
+        padding: 5px;
+        width: 200px;
+        height: 150px;
+        margin: 10px;
+        line-height: 150px;
+        color: white;
+        font-weight: bold;
+        font-size: 2em;
+        text-align: center;
+        border-radius: 10px;
+      }
+      .float {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .float:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+      .float-item {
+        float: left;
+      }
+    </style>
+    <style   src="./style.scss"></style>
   </head>
   <body>
     <link
       href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
 
     <div class="full-table">
       <div class="table-cell">
@@ -102,84 +136,124 @@
         </div>
       </div>
       <ul class="container float">
-        <a href="https://kayoo123.github.io/astroo-api/jour.json"><li class="item float-item">Jour</li></a>
-        <a href="https://kayoo123.github.io/astroo-api/hebdomadaire.json"><li class="item float-item">Hebdomadaire </li></a>
-        <a href="https://kayoo123.github.io/astroo-api/mensuel.json"><li class="item float-item">Mensuel</li></a>
+        <a href="https://kayoo123.github.io/astroo-api/jour.json"
+          ><li class="item float-item">Jour</li></a
+        >
+        <a href="https://kayoo123.github.io/astroo-api/hebdomadaire.json"
+          ><li class="item float-item">Hebdomadaire</li></a
+        >
+        <a href="https://kayoo123.github.io/astroo-api/mensuel.json"
+          ><li class="item float-item">Mensuel</li></a
+        >
       </ul>
     </div>
-<!-- (A) DIV CONTAINER -->
-<div id="demoA"></div>
+    <div class="clock">
+      <span class="horloge">test</span>
+      <div class="hand hours"></div>
+      <div class="hand minutes"></div>
+      <div class="hand seconds"></div>
+      <div class="point"></div>
+      <div class="marker">
+        <span class="marker__1"></span>
+        <span class="marker__2"></span>
+        <span class="marker__3"></span>
+        <span class="marker__4"></span>
+      </div>
+    </div>
+    <div id="demoA"></div>
 
- <!-- (B) JAVASCRIPT -->
-<script>
-// (B1) JSON STRING TO ARRAY
-var url = "https://kayoo123.github.io/astroo-api/jour.json"; 
-var obj = await (await fetch(url)).json();
-// (B2) CREATE LIST
-var list = document.createElement("ol");
-for (let i of obj) {
-  let item = document.createElement("li");
-  item.innerHTML = i;
-  list.appendChild(item);
-}
-
-// (B3) APPEND LIST TO CONTAINER
-document.getElementById("demoA").appendChild(list);
-</script>
     <script>
 
-      
-      function date() {
-        var today = new Date();
-        document.getElementById("date").innerHTML = today.toDateString();
-      }
+const hours = document.querySelector('.hours');
+const minutes = document.querySelector('.minutes');
+const seconds = document.querySelector('.seconds');
+const horloge = document.querySelector('.horloge');
+clock = () => {
+  let today = new Date();
+  let h = (today.getHours() % 12) + today.getMinutes() / 59; // 22 % 12 = 10pm
+  let m = today.getMinutes(); // 0 - 59
+  let s = today.getSeconds(); // 0 - 59
+  horloge.innerText =today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+  h *= 30; // 12 * 30 = 360deg
+  m *= 6;
+  s *= 6; // 60 * 6 = 360deg
 
-      function clock() {
-        var today = new Date();
-        var hour = zeros(twelveHour(today.getHours()));
-        var minutes = zeros(today.getMinutes());
-        var seconds = zeros(today.getSeconds());
-        if (today.getHours() >= 12) {
-          seconds += " pm";
-        } else {
-          seconds += " am";
-        }
-        hrs = today.getHours();
-        if (hrs < 12) greet = "Good Morning  ";
-        else if (hrs >= 12 && hrs <= 17) greet = "Good Afternoon ";
-        else if (hrs >= 17 && hrs <= 24) greet = "Good Evening  ";
-        // console.log(today.toLocaleTimeString());
-        document.getElementById("greet").innerHTML = greet;
-        document.getElementById("hour").innerHTML = hour;
-        document.getElementById("min").innerHTML = minutes;
-        document.getElementById("sec").innerHTML = seconds;
-      }
+  rotation(hours, h);
+  rotation(minutes, m);
+  rotation(seconds, s);
 
-      function twelveHour(hour) {
-        if (hour > 12) {
-          return (hour -= 12);
-        } else if (hour === 0) {
-          return (hour = 12);
-        } else {
-          return hour;
-        }
-      }
-      // adds zero infront of single digit number
-      function zeros(num) {
-        if (num < 10) {
-          num = "0" + num;
-        }
-        return num;
-      }
+  // call every second
+  setTimeout(clock, 500);
+}
 
-      function dateTime() {
-        date();
-        clock();
-        setTimeout(dateTime, 500);
-      }
+rotation = (target, val) => {
+  target.style.transform =  `rotate(${val}deg)`;
+}
 
-      dateTime();
-      // END
+window.onload = clock();
+
+
+      var url = "https://kayoo123.github.io/astroo-api/jour.json";
+      var obj = await ((await fetch(url)).json());
+      var list = document.createElement("ol");
+      for (let i of obj) {
+        let item = document.createElement("li");
+        item.innerHTML = i;
+        list.appendChild(item);
+      }
+      document.getElementById("demoA").appendChild(list);
+
+            function date() {
+              var today = new Date();
+              document.getElementById("date").innerHTML = today.toDateString();
+            }
+
+            function clock() {
+              var today = new Date();
+              var hour = zeros(twelveHour(today.getHours()));
+              var minutes = zeros(today.getMinutes());
+              var seconds = zeros(today.getSeconds());
+              if (today.getHours() >= 12) {
+                seconds += " pm";
+              } else {
+                seconds += " am";
+              }
+              hrs = today.getHours();
+              if (hrs < 12) greet = "Good Morning  ";
+              else if (hrs >= 12 && hrs <= 17) greet = "Good Afternoon ";
+              else if (hrs >= 17 && hrs <= 24) greet = "Good Evening  ";
+              // console.log(today.toLocaleTimeString());
+              document.getElementById("greet").innerHTML = greet;
+              document.getElementById("hour").innerHTML = hour;
+              document.getElementById("min").innerHTML = minutes;
+              document.getElementById("sec").innerHTML = seconds;
+            }
+
+            function twelveHour(hour) {
+              if (hour > 12) {
+                return (hour -= 12);
+              } else if (hour === 0) {
+                return (hour = 12);
+              } else {
+                return hour;
+              }
+            }
+            // adds zero infront of single digit number
+            function zeros(num) {
+              if (num < 10) {
+                num = "0" + num;
+              }
+              return num;
+            }
+
+            function dateTime() {
+              date();
+              clock();
+              setTimeout(dateTime, 500);
+            }
+
+            dateTime();
+            // END
     </script>
   </body>
 </html>
