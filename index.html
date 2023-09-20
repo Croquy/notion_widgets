@@ -162,10 +162,10 @@
         list.appendChild(item);
       }
       document.getElementById("demoA").appendChild(list);
-      const hours = document.querySelector(".hours");
-      const minutes = document.querySelector(".minutes");
-      const seconds = document.querySelector(".seconds");
-      const horloge = document.querySelector(".horloge");
+      const hours = document.getElementsByClassName("hours");
+      const minutes = document.getElementsByClassName("minutes");
+      const seconds = document.getElementsByClassName("seconds");
+      const horloge = document.getElementsByClassName("horloge");
       function date() {
         var today = new Date();
         document.getElementById("date").innerHTML = today.toDateString();
