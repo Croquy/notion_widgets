@@ -113,9 +113,12 @@
         float: left;
       }
     </style>
-    <style   src="style.css"></style>
   </head>
   <body>
+    <link
+    href="style.css"
+    rel="stylesheet"
+  />
     <link
       href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700"
       rel="stylesheet"
@@ -197,14 +200,9 @@
       var url = "https://kayoo123.github.io/astroo-api/jour.json";
 
 
-      fetch(url)
-    .then(result => result.json())
-    .then((output) => {
-      obj= output;
-}).catch(err => console.error(err));
 
       var list = document.createElement("ol");
-      for (let i of obj) {
+      for (let i of url) {
         let item = document.createElement("li");
         item.innerHTML = i;
         list.appendChild(item);
