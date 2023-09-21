@@ -147,6 +147,7 @@
       var list = document.createElement("ol");
       fetch(url).then(r => r.json())
   .then(data => {for (let i of data) {
+    console.log(i)
         let item = document.createElement("li");
         item.innerHTML = i;
         list.appendChild(item);}
