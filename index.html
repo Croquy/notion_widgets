@@ -145,17 +145,25 @@
     <script>
       var url = "https://kayoo123.github.io/astroo-api/jour.json";
       var list = document.createElement("ol");
-      fetch(url).then(r => r.json())
-  .then(data => {for (let i of data) {
-    console.log(i)
-        let item = document.createElement("li");
-        item.innerHTML = i;
-        list.appendChild(item);}
-      })
-  .catch(e => console.log("Booo"))
-      
-      
-      document.getElementById("demoA").appendChild(list);
+      window
+        .fetch(url)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (json) {
+          return doSomethingWith(json);
+        });
+      function doSomethingWith(json) {
+        for (var i = 0; i < json.length; i++) {
+          var newListItem = document.createElement("li");
+
+          newListItem.innerHTML = json[i];
+
+          newList.appendChild(newListItem);
+        }
+        document.getElementById("demoA").appendChild(newList);
+      }
+
       function date() {
         var today = new Date();
         document.getElementById("date").innerHTML = today.toDateString();
@@ -165,15 +173,28 @@
       const span_s = document.getElementById("aig_s");
       const span_horloge = document.getElementById("horloge");
       const span_date = document.getElementById("date");
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
       function clock() {
         var today = new Date();
         hrs = today.getHours();
         if (hrs < 12) greet = "Bonjour";
         else if (hrs >= 12 && hrs <= 17) greet = "Bon après midi ";
         else if (hrs >= 17 && hrs <= 24) greet = "Bonne soirée  ";
-        span_date.innerHTML = greet+ " nous sommes le "+ today.toLocaleDateString("fr-FR",options);
-        span_horloge.innerText =zeros(today.getHours()) +":" +zeros(today.getMinutes()) +":" +zeros(today.getSeconds()); 
+        span_date.innerHTML =
+          greet +
+          " nous sommes le " +
+          today.toLocaleDateString("fr-FR", options);
+        span_horloge.innerText =
+          zeros(today.getHours()) +
+          ":" +
+          zeros(today.getMinutes()) +
+          ":" +
+          zeros(today.getSeconds());
         var h = ((today.getHours() % 12) + today.getMinutes() / 59) * 30; // 22 % 12 = 10pm
         span_h.style.transform = `rotate(${h}deg)`;
         span_m.style.transform = "rotate(" + today.getMinutes() * 6 + "deg)";
