@@ -151,12 +151,14 @@
           return response.json();
         })
         .then(function (json) {
+          console.log(json);
           return doSomethingWith(json);
         });
       function doSomethingWith(json) {
+        console.log("doSomethingWith"+json);
         for (var i = 0; i < json.length; i++) {
           var newListItem = document.createElement("li");
-
+          console.log(json[i]);
           newListItem.innerHTML = json[i];
 
           list.appendChild(newListItem);
