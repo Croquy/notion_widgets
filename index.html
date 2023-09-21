@@ -182,8 +182,8 @@
           zeros(today.getSeconds());
           
         var h = ((today.getHours() % 12) + today.getMinutes() / 59)*30; // 22 % 12 = 10pm
-        document.getElementsByClassName("hours").style.transform="rotate("+h+"deg)"
-        document.getElementsByClassName("minutes").style.transform="rotate("+today.getMinutes() * 6+"deg)"
+        document.getElementsByClassName(hours).style.transform=`rotate(${h}deg)`
+        document.getElementsByClassName(minutes).style.transform="rotate("+today.getMinutes() * 6+"deg)"
         document.getElementsByClassName("seconds").style.transform="rotate("+today.getSeconds() * 6+"deg)" 
       }
 
