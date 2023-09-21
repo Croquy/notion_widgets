@@ -141,16 +141,18 @@
       
       window.fetch(url).then(function (response) {
           return response.json();
-        }).then(function (json) {
-          document.getElementById("h_j").innerHTML(json.vierge)
-          return doSomethingWith(json);
+        }).then(function (json) { 
+          return doSomethingWith("h_j",json);
         }); 
       window.fetch("https://kayoo123.github.io/astroo-api/hebdomadaire.json").then(function (response) {
           return response.json();
         }).then(function (json) {
-          document.getElementById("h_h").innerHTML(json.vierge) 
+          
+          return doSomethingWith("h_h",json);
         });  
-
+      function  doSomethingWith(nom,json){
+        document.getElementById(nom).innerHTML(json.vierge) 
+      }
  
       const span_h = document.getElementById("aig_h");
       const span_m = document.getElementById("aig_m");
