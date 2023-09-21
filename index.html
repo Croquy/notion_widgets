@@ -128,48 +128,30 @@
         </div>
       </div>
       <ul class="container float">
-        <a href="https://kayoo123.github.io/astroo-api/jour.json"
-          ><li class="item float-item">Jour</li></a
-        >
-        <a href="https://kayoo123.github.io/astroo-api/hebdomadaire.json"
-          ><li class="item float-item">Hebdomadaire</li></a
-        >
+        <li class="item float-item" id="h_j">Jour</li>
+        <li class="item float-item" id="h_h">Hebdomadaire</li>
         <a href="https://kayoo123.github.io/astroo-api/mensuel.json"
-          ><li class="item float-item">Mensuel</li></a
+          ><li class="item float-item" id="h_m">Mensuel</li></a
         >
       </ul>
-    </div>
-
-    <div id="demoA"></div>
+    </div> 
 
     <script>
       var url = "https://kayoo123.github.io/astroo-api/jour.json";
-      var list = document.createElement("ol");
-      window
-        .fetch(url)
-        .then(function (response) {
+      
+      window.fetch(url).then(function (response) {
           return response.json();
-        })
-        .then(function (json) {
-          console.log(json);
+        }).then(function (json) {
+          document.getElementById("h_j").innerHTML(json.vierge)
           return doSomethingWith(json);
-        });
-      function doSomethingWith(json) {
-        console.log("doSomethingWith"+json.vierge);
-        for (var i = 0; i < json.length; i++) {
-          var newListItem = document.createElement("li");
-          console.log(json['vierge']);
-          newListItem.innerHTML = json[i];
+        }); 
+      window.fetch("https://kayoo123.github.io/astroo-api/hebdomadaire.json").then(function (response) {
+          return response.json();
+        }).then(function (json) {
+          document.getElementById("h_h").innerHTML(json.vierge) 
+        });  
 
-          list.appendChild(newListItem);
-        }
-        document.getElementById("demoA").appendChild(list);
-      }
-
-      function date() {
-        var today = new Date();
-        document.getElementById("date").innerHTML = today.toDateString();
-      }
+ 
       const span_h = document.getElementById("aig_h");
       const span_m = document.getElementById("aig_m");
       const span_s = document.getElementById("aig_s");
@@ -187,16 +169,8 @@
         if (hrs < 12) greet = "Bonjour";
         else if (hrs >= 12 && hrs <= 17) greet = "Bon après midi ";
         else if (hrs >= 17 && hrs <= 24) greet = "Bonne soirée  ";
-        span_date.innerHTML =
-          greet +
-          " nous sommes le " +
-          today.toLocaleDateString("fr-FR", options);
-        span_horloge.innerText =
-          zeros(today.getHours()) +
-          ":" +
-          zeros(today.getMinutes()) +
-          ":" +
-          zeros(today.getSeconds());
+        span_date.innerHTML =greet +" nous sommes le " +today.toLocaleDateString("fr-FR", options);
+        span_horloge.innerText =zeros(today.getHours()) +":" +zeros(today.getMinutes()) +":" +zeros(today.getSeconds());
         var h = ((today.getHours() % 12) + today.getMinutes() / 59) * 30; // 22 % 12 = 10pm
         span_h.style.transform = `rotate(${h}deg)`;
         span_m.style.transform = "rotate(" + today.getMinutes() * 6 + "deg)";
@@ -211,8 +185,7 @@
         return num;
       }
 
-      function dateTime() {
-        date();
+      function dateTime() { 
         clock();
         setTimeout(dateTime, 500);
       }
