@@ -155,10 +155,10 @@
           return doSomethingWith(json);
         });
       function doSomethingWith(json) {
-        console.log("doSomethingWith"+json);
+        console.log("doSomethingWith"+json.length);
         for (var i = 0; i < json.length; i++) {
           var newListItem = document.createElement("li");
-          console.log(json[i]);
+          console.log(json['vierge']);
           newListItem.innerHTML = json[i];
 
           list.appendChild(newListItem);
