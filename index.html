@@ -12,7 +12,7 @@
       body {
         background-color: #fff;
         line-height: 1.6;
-        font-family: 'Oooh Baby', cursive;
+        font-family: "Oooh Baby", cursive;
       }
 
       h1 {
@@ -47,8 +47,6 @@
         box-shadow: none;
       }
 
-      
-
       .date {
         display: block;
         min-width: 162px;
@@ -60,7 +58,7 @@
       .greet {
         min-width: 162px;
         /* padding-right: 30px; */
-        font-family: 'Oooh Baby', cursive;
+        font-family: "Oooh Baby", cursive;
         font-size: 1.2em;
       }
     </style>
@@ -109,7 +107,6 @@
       href="https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap"
       rel="stylesheet"
     />
-    
 
     <div class="full-table">
       <div class="table-cell">
@@ -117,11 +114,17 @@
           <div class="greet" id="greet"></div>
           <div class="date" id="date"></div>
           <div class="clock">
-            <div class="time" id="hour"></div>
-            <div class="colon">:</div>
-            <div class="time" id="min"></div>
-            <div class="colon">:</div>
-            <div class="time" id="sec"></div>
+            <span class="horloge">test</span>
+            <div class="hand hours" id="aig_h"></div>
+            <div class="hand minutes" id="aig_m"></div>
+            <div class="hand seconds" id="aig_s"></div>
+            <div class="point"></div>
+            <div class="marker">
+              <span class="marker__1"></span>
+              <span class="marker__2"></span>
+              <span class="marker__3"></span>
+              <span class="marker__4"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -137,19 +140,7 @@
         >
       </ul>
     </div>
-    <div class="clock">
-      <span class="horloge">test</span>
-      <div class="hand hours" id="aig_h"></div>
-      <div class="hand minutes" id="aig_m"></div>
-      <div class="hand seconds" id="aig_s"></div>
-      <div class="point"></div>
-      <div class="marker">
-        <span class="marker__1"></span>
-        <span class="marker__2"></span>
-        <span class="marker__3"></span>
-        <span class="marker__4"></span>
-      </div>
-    </div>
+
     <div id="demoA"></div>
 
     <script>
@@ -161,7 +152,7 @@
         item.innerHTML = i;
         list.appendChild(item);
       }
-      document.getElementById("demoA").appendChild(list); 
+      document.getElementById("demoA").appendChild(list);
       function date() {
         var today = new Date();
         document.getElementById("date").innerHTML = today.toDateString();
@@ -178,16 +169,16 @@
         else if (hrs >= 17 && hrs <= 24) greet = "Bonne soirée  ";
         document.getElementById("greet").innerHTML = greet;
         document.getElementsByClassName("horloge").innerText =
-        zeros(today.getHours())+
+          zeros(today.getHours()) +
           ":" +
           zeros(today.getMinutes()) +
           ":" +
           zeros(today.getSeconds());
-          
-        var h = ((today.getHours() % 12) + today.getMinutes() / 59)*30; // 22 % 12 = 10pm
-        span_h.style.transform=`rotate(${h}deg)`
-        span_m.style.transform="rotate("+today.getMinutes() * 6+"deg)"
-        span_s.style.transform="rotate("+today.getSeconds() * 6+"deg)" 
+
+        var h = ((today.getHours() % 12) + today.getMinutes() / 59) * 30; // 22 % 12 = 10pm
+        span_h.style.transform = `rotate(${h}deg)`;
+        span_m.style.transform = "rotate(" + today.getMinutes() * 6 + "deg)";
+        span_s.style.transform = "rotate(" + today.getSeconds() * 6 + "deg)";
       }
 
       // adds zero infront of single digit number
@@ -199,10 +190,10 @@
       }
 
       function dateTime() {
-       // date();
+         date();
         clock();
         setTimeout(dateTime, 500);
-      } 
+      }
 
       dateTime();
       // END
