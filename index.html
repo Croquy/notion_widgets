@@ -139,9 +139,9 @@
     </div>
     <div class="clock">
       <span class="horloge">test</span>
-      <div class="hand hours"></div>
-      <div class="hand minutes"></div>
-      <div class="hand seconds"></div>
+      <div class="hand hours" id="aig_h"></div>
+      <div class="hand minutes" id="aig_m"></div>
+      <div class="hand seconds" id="aig_s"></div>
       <div class="point"></div>
       <div class="marker">
         <span class="marker__1"></span>
@@ -166,6 +166,9 @@
         var today = new Date();
         document.getElementById("date").innerHTML = today.toDateString();
       }
+      const span_h = document.getElementById("aig_h");
+      const span_m = document.getElementById("aig_m");
+      const span_s = document.getElementById("aig_s");
 
       function clock() {
         var today = new Date();
@@ -182,9 +185,9 @@
           zeros(today.getSeconds());
           
         var h = ((today.getHours() % 12) + today.getMinutes() / 59)*30; // 22 % 12 = 10pm
-        document.getElementsByClassName(hours).style.transform=`rotate(${h}deg)`
-        document.getElementsByClassName(minutes).style.transform="rotate("+today.getMinutes() * 6+"deg)"
-        document.getElementsByClassName("seconds").style.transform="rotate("+today.getSeconds() * 6+"deg)" 
+        span_h.style.transform=`rotate(${h}deg)`
+        span_m.style.transform="rotate("+today.getMinutes() * 6+"deg)"
+        span_s.style.transform="rotate("+today.getSeconds() * 6+"deg)" 
       }
 
       // adds zero infront of single digit number
