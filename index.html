@@ -5,6 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link href="style.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700"
@@ -16,92 +22,81 @@
     />
     <style>
       body {
-        background-image: radial-gradient(ellipse at center, rgba(255,179,206,0) 0%, rgba(255,180,199,0) 43%, rgba(255,181,189,0.43) 100%);
+        background-image: radial-gradient(
+          ellipse at center,
+          rgba(255, 179, 206, 0) 0%,
+          rgba(255, 180, 199, 0) 43%,
+          rgba(255, 181, 189, 0.43) 100%
+        );
         line-height: 1.6;
         font-family: "Oooh Baby", cursive;
-      }
-    </style>
-    <style>
-      .container {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      .item {
-        background: rgba(66, 133, 244, 0.9);
-        padding: 5px;
-        width: 200px;
-        height: 150px;
-        margin: 10px;
-        line-height: 150px;
-        color: white;
-        font-weight: bold;
-        font-size: 2em;
-        text-align: center;
-        border-radius: 10px;
-      }
-      .float {
-        max-width: 700px;
-        margin: 0 auto;
-      }
-      .float:after {
-        content: ".";
-        display: block;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-      }
-      .float-item {
-        float: left;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="components">
-    <div class="card">
-      <div class="date" id="date"></div>
-      <div class="clock">
-        <span class="horloge" id="horloge"></span>
-        <div class="hand hours" id="aig_h"></div>
-        <div class="hand minutes" id="aig_m"></div>
-        <div class="hand seconds" id="aig_s"></div>
-        <div class="point"></div>
-        <div class="marker">
-          <span class="marker__1"></span>
-          <span class="marker__2"></span>
-          <span class="marker__3"></span>
-          <span class="marker__4"></span>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="date" id="date"></div>
+            <div class="clock">
+              <span class="horloge" id="horloge"></span>
+              <div class="hand hours" id="aig_h"></div>
+              <div class="hand minutes" id="aig_m"></div>
+              <div class="hand seconds" id="aig_s"></div>
+              <div class="point"></div>
+              <div class="marker">
+                <span class="marker__1"></span>
+                <span class="marker__2"></span>
+                <span class="marker__3"></span>
+                <span class="marker__4"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <a
+            class="weatherwidget-io"
+            href="https://forecast7.com/fr/45d994d72/villefranche-sur-saone/"
+            data-label_1="VILLEFRANCHE-SUR-SAONE"
+            data-font="Open Sans"
+            data-icons="Climacons Animated"
+            data-days="5"
+            data-theme="hexellence"
+            data-textcolor="#64a9b7"
+            data-suncolor="#feffa4"
+            data-cloudcolor="#93b8ed"
+            >VILLEFRANCHE-SUR-SAONE</a
+          >
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="chip">
+              <div class="chip__icon">
+                <ion-icon name="color-palette"></ion-icon>
+              </div>
+              <p id="h_j">Neumorphic Design</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="chip">
+              <div class="chip__icon">
+                <ion-icon name="color-palette"></ion-icon>
+              </div>
+              <p id="h_h">Neumorphic Design</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="chip">
+              <div class="chip__icon">
+                <ion-icon name="color-palette"></ion-icon>
+              </div>
+              <p id="h_m">Neumorphic Design</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <a class="weatherwidget-io" href="https://forecast7.com/fr/45d994d72/villefranche-sur-saone/" data-label_1="VILLEFRANCHE-SUR-SAONE" data-font="Open Sans" data-icons="Climacons Animated" data-days="5" data-theme="hexellence" data-textcolor="#64a9b7" data-suncolor="#feffa4" data-cloudcolor="#93b8ed" >VILLEFRANCHE-SUR-SAONE</a>
-         
-    <div class="card">
-      <div class="chip">
-        <div class="chip__icon">
-          <ion-icon name="color-palette"></ion-icon>
-        </div>
-        <p id="h_j">Neumorphic Design</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="chip">
-        <div class="chip__icon">
-          <ion-icon name="color-palette"></ion-icon>
-        </div>
-        <p id="h_h">Neumorphic Design</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="chip">
-        <div class="chip__icon">
-          <ion-icon name="color-palette"></ion-icon>
-        </div>
-        <p id="h_m">Neumorphic Design</p>
-      </div>
-    </div>
-</div>  </div>  
     <script>
       var url = "https://kayoo123.github.io/astroo-api/jour.json";
 
@@ -183,8 +178,22 @@
       // END
     </script>
     <!-- forcast -->
-<script>
-  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-  </script>
+    <script>
+      !(function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://weatherwidget.io/js/widget.min.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }
+      })(document, "script", "weatherwidget-io-js");
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
