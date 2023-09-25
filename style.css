@@ -1,3 +1,8 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
 :root {
   --primary-light: #8abdff;
   --primary: #6d5dfc;
@@ -646,18 +651,18 @@
 }
 
 :root {
-  --card-height: 65vh;
-  --card-width: calc(var(--card-height) );
-  --rotate:132deg;
+  --radius: 5%;
+  --card-height: 25vh;
+  --card-width: calc(var(--card-height));
 }
 
 .cadre {
   background: #fff;
-  width: var(--card-width);
+  width: calc(var(--card-height));
   height: var(--card-height);
   padding: 3px;
   position: relative;
-  border-radius: 5%;
+  border-radius: var(--radius);
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -668,7 +673,7 @@
   content: "";
   width: 104%;
   height: 104%;
-  border-radius: 5%;
+  border-radius: var(--radius);
   background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
   position: absolute;
   z-index: -1;
