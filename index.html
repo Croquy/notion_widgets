@@ -22,13 +22,6 @@
     />
     <style>
       body {
-        background-image: radial-gradient(
-          ellipse at center,
-          rgba(255, 179, 206, 0) 0%,
-          rgba(255, 180, 199, 0) 43%,
-          rgba(255, 181, 189, 0.43) 100%
-        );
-        background-size: cover;
         line-height: 1.6;
         font-family: "Oooh Baby" !important;
       }
@@ -44,11 +37,11 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col">
           <div class="cadre">
-            <div class="date" id="date"></div>
+            <h2 class="date" id="date"></h2>
             <div class="clock">
               <span class="horloge" id="horloge"></span>
               <div class="hand hours" id="aig_h"></div>
@@ -79,12 +72,17 @@
             >VILLEFRANCHE-SUR-SAONE</a
           >
         </div>
+       
+           
+   
+      </div>
+      <div class="row">
         <div class="col">
           <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  Journalier
+                  <h3>Journalier</h3>
                 </button>
               </h2>
               <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -94,7 +92,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                  Hebdomadaire
+                  <h3>Hebdomadaire</h3>
                 </button>
               </h2>
               <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -104,7 +102,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                  Mensuel
+                  <h3>Mensuel</h3>
                 </button>
               </h2>
               <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
@@ -112,9 +110,7 @@
               </div>
             </div>
           </div>
-           
-  
-        </div>
+
       </div>
     </div>
     <script>
