@@ -666,13 +666,13 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  display: flex;
 }
 
 .cadre::before {
   content: "";
   width: 104%;
   height: 104%;
+  margin: auto;
   border-radius: var(--radius);
   background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
   position: absolute;

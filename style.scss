@@ -767,13 +767,13 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
   justify-content: center;
   align-items: center;
   text-align: center;
-  display: flex;
 }
 
 .cadre::before {
   content: "";
   width: 104%;
   height: 104%;
+  margin : auto;
   border-radius: var(--radius);
   background-image: linear-gradient(
     var(--rotate),
