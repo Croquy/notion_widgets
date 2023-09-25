@@ -47,6 +47,7 @@
               <div class="hand hours" id="aig_h"></div>
               <div class="hand minutes" id="aig_m"></div>
               <div class="hand seconds" id="aig_s"></div>
+              <div class="semaine" id="semaine"></div>
               <div class="point"></div>
               <div class="marker">
                 <span class="marker__1"></span>
@@ -156,7 +157,13 @@
         span_m.style.transform = "rotate(" + today.getMinutes() * 6 + "deg)";
         span_s.style.transform = "rotate(" + today.getSeconds() * 6 + "deg)";
       }
-
+      function currentWeek(){
+        currentDate = new Date();
+        startDate = new Date(currentDate.getFullYear(), 0, 1);
+        var days = Math.floor((currentDate - startDate) /
+            (24 * 60 * 60 * 1000)); 
+        document.getElementById("semaine").innerHTML= "S"+Math.ceil(days / 7);
+    }
       // adds zero infront of single digit number
       function zeros(num) {
         if (num < 10) {
@@ -167,6 +174,7 @@
 
       function dateTime() {
         clock();
+        currentWeek();
         setTimeout(dateTime, 500);
       }
 

@@ -266,7 +266,14 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
     z-index: 200;
     color: white;
   }
-
+  .semaine {
+    position: absolute;
+    transform-origin: bottom;
+    bottom: 4rem;
+    border-radius: 0.2rem;
+    z-index: 200;
+    color: white;
+  }
   .hours {
     width: 0.4rem;
     height: 3.2rem;
@@ -767,6 +774,7 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
   justify-content: center;
   align-items: center;
   text-align: center;
+  display: inline-block;
 }
 
 .cadre::before {
