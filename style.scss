@@ -768,7 +768,12 @@
   }
 
 $radius : 5%;
-.card {
+
+:root {
+  --card-height: 65vh;
+  --card-width: calc(var(--card-height) );
+}
+.cadre {
   background: #fff;
   width: var(--card-width);
   height: var(--card-height);
@@ -778,24 +783,12 @@ $radius : 5%;
   justify-content: center;
   align-items: center;
   text-align: center;
-  display: flex;
-  font-size: 1.5em;
-  color: rgb(88 199 250 / 0%);
-  cursor: pointer;
-  font-family: cursive;
+  display: flex; 
 }
-
-.card:hover {
-  color: rgb(88 199 250 / 100%);
-  transition: color 1s;
-}
-.card:hover:before, .card:hover:after {
-  animation: none;
-  opacity: 0;
-}
+  
 
 
-.card::before {
+.cadre::before {
   content: "";
   width: 104%;
   height: 104%;
@@ -810,7 +803,7 @@ $radius : 5%;
     animation: spin 2.5s linear infinite;
 }
 
-.card::after {
+.cadre::after {
   position: absolute;
   content: "";
   top: calc(var(--card-height) / 6);
