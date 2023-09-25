@@ -249,6 +249,7 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
   justify-content: center;
   align-items: center;
   position: relative;
+  margin:auto;
   background-image: radial-gradient(#5ddcff, #3c67e3 43%);
 
   .hand {
@@ -766,8 +767,8 @@ $inner-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight-2),
 }
 .cadre {
   background: #fff;
-  width: calc(var(--card-height));
-  height: var(--card-height);
+ // width: calc(var(--card-height));
+  //height: var(--card-height);
   padding: 3px;
   position: relative;
   border-radius: var(--radius);

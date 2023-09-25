@@ -203,6 +203,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  margin: auto;
   background-image: radial-gradient(#5ddcff, #3c67e3 43%);
 }
 .clock .hand {
@@ -666,8 +667,6 @@
 
 .cadre {
   background: #fff;
-  width: calc(var(--card-height));
-  height: var(--card-height);
   padding: 3px;
   position: relative;
   border-radius: var(--radius);
