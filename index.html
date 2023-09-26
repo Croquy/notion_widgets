@@ -119,6 +119,29 @@
       function doSomethingWith(nom, json) {
         document.getElementById(nom).innerHTML = json.vierge;
       }
+      function translate(text){
+        const res =  fetch("https://libretranslate.com/translate", {
+        method: "POST",
+        body: JSON.stringify({
+          q: text,
+          source: "auto",
+          target: "fr",
+          format: "text",
+          api_key: ""
+        }),
+        headers: { "Content-Type": "application/json" }
+      });
+     return  res.json().translatedText;
+      }
+
+window
+        .fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (json) {
+          return doSomethingWith("h_h", translate(json.data.horoscope_data));
+        });
 
       const span_h = document.getElementById("aig_h");
       const span_m = document.getElementById("aig_m");
