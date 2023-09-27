@@ -43,8 +43,8 @@
   <body  >
     <div class="container-fluid ">
       <div class="row">
-        <div class="col">
-          <div class="cadre">
+        <div class="col cadre">
+          <div class="">
             <div class="date" id="date"></div>
             <div class="clock">
               <span class="horloge" id="horloge"></span>
@@ -62,7 +62,7 @@
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col cadre">
           <a
             class="weatherwidget-io"
             href="https://forecast7.com/fr/45d994d72/villefranche-sur-saone/"
@@ -80,7 +80,7 @@
        
            
     
-        <div class="col">
+        <div class="col cadre">
           <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Aujourd'hui</button>
@@ -88,7 +88,7 @@
     <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Calc</button>
   </div>
 </nav>
-<div class="tab-content cadre" id="nav-tabContent">
+<div class="tab-content " id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><span id="h_j"></span></div>
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"  ><span id="h_h"></span></div>
   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -107,14 +107,14 @@
         .then(function (json) {
           return doSomethingWith("h_j", json);
         });
-      window
+    /*  window
         .fetch("https://kayoo123.github.io/astroo-api/hebdomadaire.json")
         .then(function (response) {
           return response.json();
         })
         .then(function (json) {
           return doSomethingWith("h_h", json);
-        });
+        });*/
     
       function doSomethingWith(nom, json) {
         document.getElementById(nom).innerHTML = json.vierge;
@@ -137,11 +137,19 @@
 window
         .fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today" , {mode: 'no-cors'})
         .then(function (response) {
+          console.log(response);
           return response.json();
         })
         .then(function (json) {
           return doSomethingWith("h_h", translate(json.data.horoscope_data));
         });
+        fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
+  headers: {
+    Accept: "application/json"
+  }
+}).then(response => response.json())
+.then(response => console.log(JSON.stringify(response)))
+.catch(error => console.log("Erreur : " + error));
 
       const span_h = document.getElementById("aig_h");
       const span_m = document.getElementById("aig_m");
