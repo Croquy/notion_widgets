@@ -136,11 +136,11 @@
 
 window
         .fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today" , {mode: 'no-cors'})
-        .then(function (response) {
-          console.log(response);
+        .then(function (response) { 
           return response.json();
         })
         .then(function (json) {
+          console.log(json());
           return doSomethingWith("h_h", translate(json.data.horoscope_data));
         });
         fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
