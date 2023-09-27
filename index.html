@@ -88,7 +88,7 @@
     <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Calc</button>
   </div>
 </nav>
-<div class="tab-content" id="nav-tabContent">
+<div class="tab-content cadre" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><span id="h_j"></span></div>
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"  ><span id="h_h"></span></div>
   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -135,7 +135,7 @@
       }
 
 window
-        .fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today")
+        .fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today" , {mode: 'no-cors'})
         .then(function (response) {
           return response.json();
         })
