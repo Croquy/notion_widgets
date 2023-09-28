@@ -133,6 +133,14 @@
       });
      return  res.json().translatedText;
       }
+      const gethoros = async function () {
+
+const ResponseData = await fetch('https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today');
+const Response = await ResponseData.json();
+return Response.data.horoscope_data;
+
+};
+
       function horos(){
         var jsonretour;
        fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
@@ -142,7 +150,7 @@
    .then(json =>jsonretour=json);
      return JSON.stringify(jsonretour);
       }
-      console.log(horos());
+      console.log(gethoros());
       fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
   method: "GET",
   headers: { "Content-Type": "application/json" },mode: 'no-cors'
