@@ -136,9 +136,6 @@
       function horos(){
        fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
         method: "GET",
-        body: JSON.stringify({
-          sign: "virgo" 
-        }),
         headers: { "Content-Type": "application/json" }, mode: 'no-cors'
       }).then(response => response.json())
    .then(json =>{console.log(JSON.stringify(json)); return JSON.stringify(json)});
@@ -147,7 +144,6 @@
       console.log(horos());
       fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
   method: "GET",
-  body: JSON.stringify({ foo: "bar" }),
   headers: { "Content-Type": "application/json" },
 })  .then((res) => res.json())
   .then((json) => console.log(json));
