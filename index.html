@@ -146,10 +146,10 @@ console.log(gethoros());
         var jsonretour;
        fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
         method: "GET",
-        mode: 'same-origin',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
+        ,"Access-Control-Allow-Origin":"True"
       },
       }).then(response => response.json())
    .then(json =>jsonretour=json);
