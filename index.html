@@ -138,10 +138,11 @@
 
 const ResponseData = await fetch('https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today');
 const Response = await ResponseData.json();
+console.log(Response);
 return Response.data.horoscope_data;
 
-};
-console.log(gethoros());
+}; 
+gethoros();
       function horos(){
         var jsonretour;
        fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
@@ -151,7 +152,7 @@ console.log(gethoros());
         'Content-Type': 'application/json'
         ,"Access-Control-Allow-Origin":"True"
       },
-      }).then(response => response.json())
+      }).then(response => {console.log(response);response.json();})
    .then(json =>jsonretour=json);
      return JSON.stringify(jsonretour);
       }
