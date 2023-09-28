@@ -143,7 +143,7 @@
       });
      return  res.json();
       }
-      console.log(horos);
+      console.log(horos());
       fetch("https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
   method: "GET",
   body: JSON.stringify({ foo: "bar" }),
