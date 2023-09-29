@@ -162,7 +162,14 @@ gethoros();
   headers: { "Content-Type": "application/json" }
 })  .then((res) => res.json())
   .then((json) => console.log(json));
- 
+  fetch("https://aztro.sameerkumar.website?sign=virgo&day=today", {
+    method: 'POST'
+})
+.then(response => response.json())
+.then(json => {
+    const date = json.current_date;
+    console.log(json);
+});
 function httpGet(theUrl)
 {
     let xmlhttp;
