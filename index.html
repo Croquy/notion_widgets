@@ -157,18 +157,18 @@ gethoros();
      return JSON.stringify(jsonretour);
       }
       console.log(horos());*/
-      fetch("https://aztro.sameerkumar.website?sign=virgo&day=today", {
+fetch("https://aztro.sameerkumar.website?sign=virgo&day=today", {
   method: "GET",
   headers: { "Content-Type": "application/json" }
 })  .then((res) => res.json())
-  .then((json) => console.log(json));
+  .then((json) => console.log(JSON.stringify(json)));
   fetch("https://aztro.sameerkumar.website?sign=virgo&day=today", {
     method: 'POST'
 })
 .then(response => response.json())
 .then(json => {
-    const date = json.current_date;
-    console.log(json);
+    const date = json.description;
+    console.log(date);
 });
 function httpGet(theUrl)
 {
