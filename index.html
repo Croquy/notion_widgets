@@ -178,7 +178,9 @@ function httpGet(theUrl)
             return xmlhttp.responseText;
         }
     }
-    xmlhttp.open("GET", theUrl, false);
+    xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xmlHttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.open("GET", theUrl, true);
     xmlhttp.send();
     
     return xmlhttp.response;
