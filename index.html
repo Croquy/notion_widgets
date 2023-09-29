@@ -157,7 +157,7 @@ gethoros();
      return JSON.stringify(jsonretour);
       }
       console.log(horos());*/
-fetch("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo", {
+fetch("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today", {
   method: "GET",
   headers: { "Content-Type": "application/json" }
 })  .then((res) => res.json())
