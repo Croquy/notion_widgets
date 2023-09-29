@@ -140,6 +140,7 @@
           return response.json();
         })
         .then(function (json) {
+          console.log(json);
           console.log(JSON.parse(json));
           console.log(translate(JSON.parse(json).description));
           return doSomethingWith("h_h", json);
