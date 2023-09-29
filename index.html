@@ -156,13 +156,13 @@ gethoros();
    .then(json =>jsonretour=json);
      return JSON.stringify(jsonretour);
       }
-      console.log(horos());
-      fetch("http://cors.io/?https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=virgo&day=today", {
+      console.log(horos());*/
+      fetch("https://aztro.sameerkumar.website?sign=virgo&day=today", {
   method: "GET",
   headers: { "Content-Type": "application/json" }
 })  .then((res) => res.json())
   .then((json) => console.log(json));
- */
+ 
 function httpGet(theUrl)
 {
     let xmlhttp;
