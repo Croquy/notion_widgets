@@ -100,14 +100,8 @@
          
     </div>
     <script>
-      window
-        .fetch("https://kayoo123.github.io/astroo-api/jour.json")
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (json) {
-          return doSomethingWith("h_j", json);
-        });
+      doSomethingWith("h_j",getapi("https://kayoo123.github.io/astroo-api/jour.json"));
+    
     /*  window
         .fetch("https://kayoo123.github.io/astroo-api/hebdomadaire.json")
         .then(function (response) {
@@ -115,12 +109,8 @@
         })
         .then(function (json) {
           return doSomethingWith("h_h", json);
-        });*/
-    
-      function doSomethingWith(nom, json) {
-        document.getElementById(nom).innerHTML = json.vierge;
-      }
-      function translate(text){
+        });
+         function translate(text){
         const res =  fetch("https://libretranslate.com/translate", {
         method: "POST",
         body: JSON.stringify({
@@ -134,17 +124,38 @@
       });
      return  res.json().translatedText;
       }
-     window
-        .fetch("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today")
+        
+        */
+    var horos= getapi("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today");
+    doSomethingWith("h_h", horos.description);
+
+    console.log(translate(horos.description))
+
+function translate(text){
+   
+  var sourceLang = 'en';
+  var targetLang = 'fr'; 
+  var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
+  
+  $.getJSON(url, function(data) {
+       return data[0][0][0];
+    });
+
+}
+function doSomethingWith(nom, json) {
+        document.getElementById(nom).innerHTML = json.vierge;
+      }
+  function getapi(url){
+    window
+        .fetch(url)
         .then(function (response) {
           return response.json();
         })
         .then(function (json) {
           console.log(json); 
-          return doSomethingWith("h_h", translate(json.description));
-        });
- 
-  
+          return json;
+        }); 
+  }
 
       const span_h = document.getElementById("aig_h");
       const span_m = document.getElementById("aig_m");
