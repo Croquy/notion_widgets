@@ -132,8 +132,9 @@
         
         */
       var horosjour= getapi("https://kayoo123.github.io/astroo-api/jour.json");
-      console.log(horosjour.vierge);
-      ecrit("h_j",horosjour.vierge);
+      console.log (horosjour);
+      console.log(JSON.parse(horosjour).vierge);
+      ecrit("h_j",JSON.parse(horosjour).vierge);
       var horos= getapi("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today");
       ecrit("h_h", horos.description);
       console.log(translate(horos.description));
