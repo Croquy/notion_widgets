@@ -155,7 +155,7 @@ function translate(text){
             document.getElementById(nom).innerHTML = json;
           }
     function getapi(url){
-      var retour;
+      var retour=
       window
           .fetch(url)
           .then(function (response) {
@@ -163,7 +163,6 @@ function translate(text){
           })
           .then(function (json) {
             console.log(json); 
-            retour = json;
             return json;
           });
           console.log(retour); 
