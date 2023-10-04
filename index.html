@@ -142,8 +142,8 @@ if (response.ok) { // if HTTP-status is 200-299
 }
 return json ;
        }
-       var t = await testfetch("https://kayoo123.github.io/astroo-api/jour.json");
-        console.log (t);
+ 
+       
       var horosjour= getItems("https://kayoo123.github.io/astroo-api/jour.json");
       console.log (horosjour);
       console.log(JSON.parse(horosjour).vierge);
@@ -242,6 +242,8 @@ try {
         clock();
         currentWeek();
         setTimeout(dateTime, 500);
+        var t =  testfetch("https://kayoo123.github.io/astroo-api/jour.json").response;
+        console.log (t);
       }
 
       dateTime();
