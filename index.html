@@ -131,7 +131,18 @@
       }
         
         */
-        console.log (getItems("https://kayoo123.github.io/astroo-api/jour.json"));
+      async function  testfetch(url){
+       let response = await fetch(url);
+
+if (response.ok) { // if HTTP-status is 200-299
+  // get the response body (the method explained below)
+  let json = await response.json();
+} else {
+  alert("HTTP-Error: " + response.status);
+}
+return json ;
+       }
+        console.log (await testfetch("https://kayoo123.github.io/astroo-api/jour.json"));
       var horosjour= getItems("https://kayoo123.github.io/astroo-api/jour.json");
       console.log (horosjour);
       console.log(JSON.parse(horosjour).vierge);
