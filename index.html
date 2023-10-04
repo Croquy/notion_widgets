@@ -133,29 +133,20 @@
         */
       async function  testfetch(url){
        let response = await fetch(url);
-var retour ; 
-if (response.ok) { // if HTTP-status is 200-299
-  // get the response body (the method explained below)
-  retour = await response.json();
-} else {
-  alert("HTTP-Error: " + response.status);
-}
-return retour ;
+        var retour ; 
+        if (response.ok) { // if HTTP-status is 200-299
+          // get the response body (the method explained below)
+          retour = await response.json();
+        } else {
+          alert("HTTP-Error: " + response.status);
+        }
+        return retour ;
        }
-       function test2(url,action){
-     fetch(url)
-    .then((response)=>response.JSON()) 
-    .then((data)=>action(data)) 
-    .catch((error)=>console.log("error"));}
+
        
-      var horosjour= test2("https://kayoo123.github.io/astroo-api/jour.json",function(data){ console.log (data);return data.json;});
-      testfetch("https://kayoo123.github.io/astroo-api/jour.json").then(x => console.log(x)); 
-      console.log (testfetch("https://kayoo123.github.io/astroo-api/jour.json"));
-      console.log (horosjour);
-      console.log(JSON.parse(horosjour).vierge);
-      ecrit("h_j",JSON.parse(horosjour).vierge);
-      var horos= getapi("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today");
-      ecrit("h_h", horos.description);
+      testfetch("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",JSON.parse(x).vierge)); 
+      getapi("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today").then(horos =>  ecrit("h_h", horos.description)) ;
+    
       console.log(translate(horos.description));
 
 function translate(text){
