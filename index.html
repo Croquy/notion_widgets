@@ -142,10 +142,13 @@ if (response.ok) { // if HTTP-status is 200-299
 }
 return retour ;
        }
- 
+       function test2(url,action){
+     fetch(url)
+    .then((response)=>response.JSON()) 
+    .then((data)=>action(data)) 
+    .catch((error)=>console.log("error"));}
        
-      var horosjour= testfetch("https://kayoo123.github.io/astroo-api/jour.json").retour;
-      console.log (testfetch("https://kayoo123.github.io/astroo-api/jour.json").retour);
+      var horosjour= test2("https://kayoo123.github.io/astroo-api/jour.json",function(data){ console.log (data);return data.json;});
       console.log (testfetch("https://kayoo123.github.io/astroo-api/jour.json"));
       console.log (horosjour);
       console.log(JSON.parse(horosjour).vierge);
