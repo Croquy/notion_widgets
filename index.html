@@ -144,7 +144,9 @@ return retour ;
        }
  
        
-      var horosjour= testfetch("https://kayoo123.github.io/astroo-api/jour.json").response;
+      var horosjour= testfetch("https://kayoo123.github.io/astroo-api/jour.json").retour;
+      console.log (testfetch("https://kayoo123.github.io/astroo-api/jour.json").retour);
+      console.log (testfetch("https://kayoo123.github.io/astroo-api/jour.json"));
       console.log (horosjour);
       console.log(JSON.parse(horosjour).vierge);
       ecrit("h_j",JSON.parse(horosjour).vierge);
