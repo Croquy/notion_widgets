@@ -149,6 +149,7 @@ return retour ;
     .catch((error)=>console.log("error"));}
        
       var horosjour= test2("https://kayoo123.github.io/astroo-api/jour.json",function(data){ console.log (data);return data.json;});
+      let out; testfetch("https://kayoo123.github.io/astroo-api/jour.json").then(x => out = x); console.log(out);
       console.log (testfetch("https://kayoo123.github.io/astroo-api/jour.json"));
       console.log (horosjour);
       console.log(JSON.parse(horosjour).vierge);
