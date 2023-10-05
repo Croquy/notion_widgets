@@ -145,19 +145,17 @@
        recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today")
       .then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
     
- console.log(testfetch2("https://kayoo123.github.io/astroo-api/jour.json", horosj));
- console.log(horosj);
- console.log(horosh);
 
-async function translate(text){
-   
-  var sourceLang = 'en';
-  var targetLang = 'fr'; 
-  var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
-  console.log(url);
-  const resp = await fetch(url);
-  return  await resp.text(); 
-}
+
+      async function translate(text){
+        console.log(text);
+        var sourceLang = 'en';
+        var targetLang = 'fr'; 
+        var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
+        console.log(url);
+        const resp = await fetch(url);
+        return  await resp.text(); 
+      }
     function ecrit(nom, json) {document.getElementById(nom).innerHTML = json;}
 
  
