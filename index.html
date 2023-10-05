@@ -143,14 +143,16 @@
         return retour ;
        }
 
-
+       try {
 // in ESM we can use top-level await
 const resp = await fetch("https://kayoo123.github.io/astroo-api/jour.json");
 
 console.log(resp.status); // 200
 console.log(await resp.text()); // a HTML document
 
-
+} catch (e) {
+    // Deal with the fact the chain failed
+}
        
       testfetch("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",x.vierge)); 
       getapi("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today").then(horos =>  ecrit("h_h", translate(horos.description))) ;
