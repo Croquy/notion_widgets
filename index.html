@@ -131,32 +131,19 @@
       }
         
         */
-      async function  testfetch(url){
-       let response = await fetch(url);
-        var retour ; 
-        if (response.ok) { // if HTTP-status is 200-299
-          // get the response body (the method explained below)
-          retour = await response.json();
+      async function  recupurl(url){
+       let response = await fetch(url); 
+        if (response.ok) { 
+          return await response.json();
         } else {
-          alert("HTTP-Error: " + response.status);
-        }
-        return retour ;
+          console.log("HTTP-Error: " + response.status);
+        } 
        }
-const horosj="";
-const horosh="";
-async function  testfetch2(url, out){
- 
-// in ESM we can use top-level await
-const resp = await fetch(url);
-
-console.log(resp.status); // 200
-out = await resp.text();
-horosh =  out;
-}
  
        
-      testfetch("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",x.vierge)); 
-      getapi("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today").then(horos =>  ecrit("h_h", translate(horos.description))) ;
+       recupurl("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",x.vierge)); 
+       recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today")
+      .then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
     
  console.log(testfetch2("https://kayoo123.github.io/astroo-api/jour.json", horosj));
  console.log(horosj);
@@ -173,18 +160,7 @@ async function translate(text){
 }
     function ecrit(nom, json) {document.getElementById(nom).innerHTML = json;}
 
-    function getapi(url){
-      const retour=fetch(url)
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (json) {
-            console.log(json); 
-            return json;
-          }); 
-          return retour; 
-    }
-
+ 
       const span_h = document.getElementById("aig_h");
       const span_m = document.getElementById("aig_m");
       const span_s = document.getElementById("aig_s");
