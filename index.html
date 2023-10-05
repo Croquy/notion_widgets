@@ -143,10 +143,9 @@
         return retour ;
        }
 
-       import fetch from 'got-fetch';
 
 // in ESM we can use top-level await
-const resp = await fetch("https://kayoo123.github.io/astroo-api/jour.json";
+const resp = await fetch("https://kayoo123.github.io/astroo-api/jour.json");
 
 console.log(resp.status); // 200
 console.log(await resp.text()); // a HTML document
