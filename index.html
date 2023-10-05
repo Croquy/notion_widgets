@@ -151,7 +151,7 @@ const resp = await fetch(url);
 
 console.log(resp.status); // 200
 out = await resp.text();
-horosh =  await resp.text();
+horosh =  out;
 }
  
        
@@ -162,16 +162,14 @@ horosh =  await resp.text();
  console.log(horosj);
  console.log(horosh);
 
-function translate(text){
+async function translate(text){
    
   var sourceLang = 'en';
   var targetLang = 'fr'; 
   var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
   console.log(url);
-  $.getJSON(url, function(data) {
-       return data[0][0][0];
-    });
-
+  const resp = await fetch(url);
+  return  await resp.text(); 
 }
     function ecrit(nom, json) {document.getElementById(nom).innerHTML = json;}
 
