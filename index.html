@@ -140,7 +140,7 @@
         var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
         console.log(url);
         const resp = await fetch(url);
-        return  await resp; 
+        return  await resp.json(); 
       }
     function ecrit(nom, json) {document.getElementById(nom).innerHTML = json;}
     const calcul = document.getElementById("calcul");
