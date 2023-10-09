@@ -143,8 +143,8 @@
        
        recupurl("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",x.vierge)); 
        recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today")
-      .then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
-    
+      .then(horos => ecrit("h_h",horos.description)) ;
+      //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
 
 
       async function translate(text){
