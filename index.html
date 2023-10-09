@@ -140,7 +140,9 @@
       var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
       console.log(url);
       const resp = await fetch(url);
-      var retourtableau = await resp.json()[0];
+      var retourtableau = await resp.json();
+      console.log (retourtableau);
+      console.log (retourtableau[0]);
       var retour = "";
       retourtableau.forEach(i=> retour+=i[0]);
       return  retour; 
