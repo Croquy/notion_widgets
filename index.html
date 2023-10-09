@@ -99,7 +99,7 @@
                 aria-labelledby="nav-profile-tab"><span id="h_h"></span></div>
               <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                 aria-labelledby="nav-contact-tab">
-                <include src="./calculator.html"></include>
+                <div id="calcul"></div>
               </div></div>
           </div>
 
@@ -107,30 +107,7 @@
         <script>
  
     
-    /*  window
-        .fetch("https://kayoo123.github.io/astroo-api/hebdomadaire.json")
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (json) {
-          return doSomethingWith("h_h", json);
-        });
-         function translate(text){
-        const res =  fetch("https://libretranslate.com/translate", {
-        method: "POST",
-        body: JSON.stringify({
-          q: text,
-          source: "auto",
-          target: "fr",
-          format: "text",
-          api_key: ""
-        }),
-        headers: { "Content-Type": "application/json" }
-      });
-     return  res.json().translatedText;
-      }
-        
-        */
+  
       async function  recupurl(url){
        let response = await fetch(url); 
         if (response.ok) { 
@@ -157,7 +134,8 @@
         return  await resp.text(); 
       }
     function ecrit(nom, json) {document.getElementById(nom).innerHTML = json;}
-
+    const calcul = document.getElementById("calcul");
+    calcul.load("calculator.html"); 
  
       const span_h = document.getElementById("aig_h");
       const span_m = document.getElementById("aig_m");
