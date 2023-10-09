@@ -120,7 +120,7 @@
       let horosvar ;
        
        recupurl("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",x.vierge)); 
-       recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today")  .then(horos => {horosvar = {
+       recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today&nodate")  .then(horos => {horosvar = {
   current_date: horos.current_date,
   compatibility: translate(horos.compatibility),
   lucky_time: horos.lucky_time,
