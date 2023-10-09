@@ -117,22 +117,22 @@
           console.log("HTTP-Error: " + response.status);
         } 
        }
-      let horosvar ;
+      const horosvar ={} ;
        
        recupurl("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",x.vierge)); 
-       recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today&nodate")  .then(horos => {horosvar = {
+       recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today&nodate").then(horos => {horosvar = {
         current_date: horos.current_date,
-        compatibility: translate(horos.compatibility).result,
+        compatibility: translate(horos.compatibility).then(x=> x),
         lucky_time: horos.lucky_time,
         lucky_number: horos.lucky_number,
-        mood: translate(horos.mood),
+        mood: translate(horos.mood).then(x=> x),
         color: horos.color,
-        description: translate(horos.description)
+        description: translate(horos.description).then(x=> x)
       };console.log(horosvar);return horosvar;})   
       .then(horos => ecrit("h_h",JSON.stringify( horos ))) ;
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
-
-
+      console.log("hor fonction");
+      console.log(horosvar);
     async function translate(text){
       //console.log(text);
       var sourceLang = 'en';
