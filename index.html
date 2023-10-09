@@ -128,8 +128,8 @@
   mood: horos.mood,
   color: horos.color,
   description: horos.description
-};return horosvar;}) 
-      .then(horos => ecrit("h_h",JSON.stringify(horos) )) ;
+};return horosvar;})    .then(horos => {return translate(JSON.stringify(horos) );}) 
+      .then(horos => ecrit("h_h",JSON.parse(horos) )) ;
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
 
 
