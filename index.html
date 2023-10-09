@@ -133,15 +133,18 @@
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
 
 
-      async function translate(text){
-        console.log(text);
-        var sourceLang = 'en';
-        var targetLang = 'fr'; 
-        var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
-        console.log(url);
-        const resp = await fetch(url);
-        return  await resp.json(); 
-      }
+    async function translate(text){
+      console.log(text);
+      var sourceLang = 'en';
+      var targetLang = 'fr'; 
+      var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
+      console.log(url);
+      const resp = await fetch(url);
+      var retourtableau = await resp.json()[0];
+      var retour = "";
+      retourtableau.forEach(i=> retour+=i[0]);
+      return  retour; 
+    }
     function ecrit(nom, json) {document.getElementById(nom).innerHTML = json;}
     const calcul = document.getElementById("calcul");
     calcul.innerText=document.getElementById("calculatormain"); 
