@@ -87,6 +87,10 @@
                   data-bs-toggle="tab" data-bs-target="#nav-profile"
                   type="button" role="tab" aria-controls="nav-profile"
                   aria-selected="false">Hebdo</button>
+                  <button class="nav-link" id="nav-t3-tab"
+                  data-bs-toggle="tab" data-bs-target="#nav-t3"
+                  type="button" role="tab" aria-controls="nav-t3"
+                  aria-selected="false">test3</button>
                 <button class="nav-link" id="nav-contact-tab"
                   data-bs-toggle="tab" data-bs-target="#nav-contact"
                   type="button" role="tab" aria-controls="nav-contact"
@@ -96,6 +100,8 @@
             <div class="tab-content " id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-home"
                 role="tabpanel" aria-labelledby="nav-home-tab"><span id="h_j"></span></div>
+                <div class="tab-pane fade show " id="nav-t3"
+                role="tabpanel" aria-labelledby="nav-t3-tab"><span id="h_t3"></span></div>
               <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                 aria-labelledby="nav-profile-tab"><span id="h_h"><ul id='listhoros'>
                 </ul></span></div>
@@ -145,7 +151,27 @@
       } ) ;
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
     }
-    
+    function horostest3 (){
+      recupurl("https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6")
+    .then(response => {
+      if (response.status === 200) {
+        const responseText = response.data;
+
+        const $ = cheerio.load(responseText);
+
+        // get the specific content from the classname
+        const mainHorDiv = $('.horoscope-content');
+ 
+
+        // get the text content and remove the first 3 characters
+        const description = mainHorDiv.text().slice(2);
+        ecrit("h_t3",description);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+    }
     
     async function translate(text){
       //console.log(text);
