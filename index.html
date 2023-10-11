@@ -135,16 +135,18 @@
         description: description
       };console.log(horosvar);return horosvar;})   
       .then(horos =>{
-        ecrit("h_h",JSON.stringify( horos ));
-        let li = document.getElementById('listhoros');
-        horos.forEach( e => {
-          let ele = document.createElement('li')
-          ele.innerHTML = `${JSON.stringify(e).replace(/[{}]/g,'')}`
-          li.appendChild(ele);
-        })
+        let str = `Aujourd'hui vous etes compatible avec les ${horos.compatibility} et votre meilleur moment sera à ${horos.lucky_time} `; 
+        str += `<span class="badge rounded-pill bg-info text-dark"> ${horos.mood} <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+          ${horos.lucky_number} 
+  </span></span>  `;
+  str += `<p style = "font-color:${horos.color}">${horos.description}</p> `;
+        ecrit("h_h",str);
+        
       } ) ;
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
     }
+    
+    
     async function translate(text){
       //console.log(text);
       var sourceLang = 'en';
