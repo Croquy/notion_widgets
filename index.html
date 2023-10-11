@@ -97,7 +97,8 @@
               <div class="tab-pane fade show active" id="nav-home"
                 role="tabpanel" aria-labelledby="nav-home-tab"><span id="h_j"></span></div>
               <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                aria-labelledby="nav-profile-tab"><span id="h_h"></span></div>
+                aria-labelledby="nav-profile-tab"><span id="h_h"><ul id='listhoros'>
+                </ul></span></div>
               <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                 aria-labelledby="nav-contact-tab">
                 <div id="calcul"></div>
@@ -133,7 +134,15 @@
         color: horos.color,
         description: description
       };console.log(horosvar);return horosvar;})   
-      .then(horos => ecrit("h_h",JSON.stringify( horos ))) ;
+      .then(horos =>{
+        ecrit("h_h",JSON.stringify( horos ));
+        let li = document.getElementById('listhoros');
+        horos.forEach( e => {
+          let ele = document.createElement('li')
+          ele.innerHTML = `${JSON.stringify(e).replace(/[{}]/g,'')}`
+          li.appendChild(ele);
+        })
+      } ) ;
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
     }
     async function translate(text){
@@ -141,11 +150,9 @@
       var sourceLang = 'en';
       var targetLang = 'fr'; 
       var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
-      console.log(url);
+      //console.log(url);
       const resp = await fetch(url);
       var retourtableau = await resp.json();
-      //console.log (retourtableau);
-      //console.log (retourtableau[0]);
       var retour = "";
       retourtableau[0].forEach(i=> retour+=i[0]);
       return  retour; 
