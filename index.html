@@ -122,12 +122,12 @@
        recupurl("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",x.vierge)); 
        recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today&nodate").then(horos => {horosvar = {
         current_date: horos.current_date,
-        compatibility: translate(horos.compatibility).then(x=>horosvar.compatibility= x),
+        compatibility: horos.compatibility,
         lucky_time: horos.lucky_time,
         lucky_number: horos.lucky_number,
-        mood: translate(horos.mood).then(x=> x),
+        mood: horos.mood,
         color: horos.color,
-        description: translate(horos.description).then(x=> x)
+        description: horos.description
       };console.log(horosvar);return horosvar;})   
       .then(horos => ecrit("h_h",JSON.stringify( horos ))) ;
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
