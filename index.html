@@ -141,11 +141,12 @@
         description: description
       };console.log(horosvar);return horosvar;})   
       .then(horos =>{
-        let str = `Aujourd'hui vous etes compatible avec les ${horos.compatibility} et votre meilleur moment sera à ${horos.lucky_time} `; 
-        str += `<span class="badge rounded-pill bg-info text-dark"> ${horos.mood} <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
-          ${horos.lucky_number} 
-  </span></span>  `;
-  str += `<p style = "font-color:${horos.color}">${horos.description}</p> `;
+        let    str = `<p style = "font-color:${horos.color}">${horos.description}</p> `;
+  str += `<ul><li> Compatibilité : ${horos.compatibility} </li>
+    <li> Nombre porte bonheur: ${horos.lucky_number} </li>
+    <li> Meilleur moment : ${horos.lucky_time} </li>
+    <li> Couleur : ${horos.color} </li>
+    </ul>`;
         ecrit("h_h",str);
         
       } ) ;
