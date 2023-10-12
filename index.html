@@ -141,7 +141,7 @@
         description: description
       };console.log(horosvar);return horosvar;})   
       .then(horos =>{
-        let    str = `<p style = "font-color:${horos.color}">${horos.description}</p> `;
+        let    str = `<p >${horos.description}</p> `;
   str += `<ul><li> Compatibilité : ${horos.compatibility} </li>
     <li> Nombre porte bonheur: ${horos.lucky_number} </li>
     <li> Meilleur moment : ${horos.lucky_time} </li>
@@ -245,6 +245,7 @@
 
       dateTime();
       remplihoroscope();
+      horostest3 ();
       // END
     </script>
         <!-- forcast -->
