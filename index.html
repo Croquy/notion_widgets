@@ -161,15 +161,7 @@
               console.log("erreur réseau : " + this.status + " " + this.statusText);
           } else {
             console.log(this.responseText); 
-          }
-        };
-        xhr.send();
-      /*recupurl("")
-    .then(response => {
-      if (response.status === 200) {
-        const responseText = response.data;
-        console.log(responseText);
-        const $ = cheerio.load(responseText); 
+            const $ = cheerio.load(responseText); 
         // get the specific content from the classname
         const mainHorDiv = $('.horoscope-content');
  
@@ -178,11 +170,9 @@
         const description = mainHorDiv.text().slice(2);
         console.log(description);
         ecrit("h_t3",description);
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });*/
+          }
+        };
+        xhr.send(); 
     }
     
     async function translate(text){
