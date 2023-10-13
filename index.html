@@ -152,6 +152,7 @@
       } ) ;
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
     }
+    const cheerio = require('cheerio');
     function horostest3 (){
               var xhr = new XMLHttpRequest();
         xhr.open("GET", "https://cors-anywhere.herokuapp.com/https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6");
