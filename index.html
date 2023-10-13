@@ -153,7 +153,18 @@
       //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
     }
     function horostest3 (){
-      recupurl("https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6")
+              var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6");
+        xhr.onreadystatechange = function() {
+          if (this.readyState < 4) return;
+          if (this.status !== 200) {
+              console.log("erreur réseau : " + this.status + " " + this.statusText);
+          } else {
+            console.log(this.responseText); 
+          }
+        };
+        xhr.send();
+      /*recupurl("")
     .then(response => {
       if (response.status === 200) {
         const responseText = response.data;
@@ -171,7 +182,7 @@
     })
     .catch(error => {
       console.error('Error:', error);
-    });
+    });*/
     }
     
     async function translate(text){
