@@ -154,7 +154,7 @@
     }
     function horostest3 (){
               var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6");
+        xhr.open("GET", "https://cors-anywhere.herokuapp.com/https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6");
         xhr.onreadystatechange = function() {
           if (this.readyState < 4) return;
           if (this.status !== 200) {
