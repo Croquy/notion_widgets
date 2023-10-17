@@ -168,11 +168,9 @@
             console.log(this.responseText); 
             const horosrecup = stringToHTML(this.responseText);
             console.log(horosrecup); 
-            const mainHorDiv = horosrecup.getElementsByClassName('horoscope-content');
-            console.log(mainHorDiv); 
-            console.log(mainHorDiv.getElementsByTagName('p')[0]); 
-    
-            const description = mainHorDiv.text().slice(2);
+            const mainHorDiv = horosrecup.getElementsByClassName('horoscope-content')[0];
+            console.log(mainHorDiv);   
+            const description = mainHorDiv.getElementsByTagName('p')[0];
             console.log(description);
             ecrit("h_t3",description);
           }
