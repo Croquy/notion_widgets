@@ -167,8 +167,8 @@
           } else {
             
             const horosrecup = stringToHTML(this.responseText);
-            const mainHorDiv = horosrecup.getElementsByClassName('.horoscope-content').firstChild();
-            console.log(mainHorDiv); 
+            const mainHorDiv = horosrecup.getElementsByClassName('.horoscope-content');
+            console.log(mainHorDiv.getElementsByTagName('p')[0]); 
     
             const description = mainHorDiv.text().slice(2);
             console.log(description);
