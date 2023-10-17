@@ -165,9 +165,11 @@
           if (this.status !== 200) {
               console.log("erreur réseau : " + this.status + " " + this.statusText);
           } else {
-            
+            console.log(this.responseText); 
             const horosrecup = stringToHTML(this.responseText);
+            console.log(horosrecup); 
             const mainHorDiv = horosrecup.getElementsByClassName('.horoscope-content');
+            console.log(mainHorDiv); 
             console.log(mainHorDiv.getElementsByTagName('p')[0]); 
     
             const description = mainHorDiv.text().slice(2);
