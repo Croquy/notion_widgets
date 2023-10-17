@@ -167,7 +167,7 @@
           } else {
             
             const horosrecup = stringToHTML(this.responseText);
-            const mainHorDiv = $('.horoscope-content');
+            const mainHorDiv = horosrecup.getElementsByClassName('.horoscope-content');
             console.log(mainHorDiv); 
           /*  const cheerio = require('cheerio');
             const $ = cheerio.load(responseText); 
