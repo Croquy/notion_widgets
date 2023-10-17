@@ -165,16 +165,18 @@
           if (this.status !== 200) {
               console.log("erreur réseau : " + this.status + " " + this.statusText);
           } else {
-            console.log(this.responseText); 
+            
             const horosrecup = stringToHTML(this.responseText);
-            const cheerio = require('cheerio');
+            const mainHorDiv = $('.horoscope-content');
+            console.log(mainHorDiv); 
+          /*  const cheerio = require('cheerio');
             const $ = cheerio.load(responseText); 
         // get the specific content from the classname
             const mainHorDiv = $('.horoscope-content');
     
-            console.log(mainHorDiv);
+            console.log(mainHorDiv);*/
             // get the text content and remove the first 3 characters
-            const description = mainHorDiv.text().slice(2);
+            const description = mainHorDiv.firstChild.text().slice(2);
             console.log(description);
             ecrit("h_t3",description);
           }
