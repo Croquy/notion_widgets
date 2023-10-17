@@ -113,7 +113,7 @@
 
         </div>
         <script>
- 
+          const preurl ="https://app.zenscrape.com/api/v1/get?apikey=ecde22d0-6cb5-11ee-8444-a5ff23c56f02&url=";
     
   
       async function  recupurl(url){
@@ -159,7 +159,7 @@
       };
     function horostest3 (){
               var xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://cors-anywhere.herokuapp.com/https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6");
+        xhr.open("GET", preurl+"https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6");
         xhr.onreadystatechange = function() {
           if (this.readyState < 4) return;
           if (this.status !== 200) {
@@ -167,16 +167,10 @@
           } else {
             
             const horosrecup = stringToHTML(this.responseText);
-            const mainHorDiv = horosrecup.getElementsByClassName('.horoscope-content');
+            const mainHorDiv = horosrecup.getElementsByClassName('.horoscope-content').firstChild();
             console.log(mainHorDiv); 
-          /*  const cheerio = require('cheerio');
-            const $ = cheerio.load(responseText); 
-        // get the specific content from the classname
-            const mainHorDiv = $('.horoscope-content');
     
-            console.log(mainHorDiv);*/
-            // get the text content and remove the first 3 characters
-            const description = mainHorDiv.firstChild.text().slice(2);
+            const description = mainHorDiv.text().slice(2);
             console.log(description);
             ecrit("h_t3",description);
           }
