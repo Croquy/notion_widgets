@@ -172,7 +172,7 @@
             console.log(mainHorDiv);   
             const description = mainHorDiv.getElementsByTagName('p')[0];
             console.log(description);
-            ecrit("h_t3",description);
+            document.getElementById("h_t3").appendChild(description); 
           }
         };
         xhr.send(); 
