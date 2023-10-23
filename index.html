@@ -19,7 +19,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap"
       rel="stylesheet" />
-      <link href="calculator.html" rel="import" />
+    <link href="calculator.html" rel="import" />
     <style>
       body {
         line-height: 1.6;
@@ -43,22 +43,63 @@
   <body>
     <div class="container-fluid ">
       <div class="row">
-        <div class="col ">
+        <div class="col">
           <div class="cadre h-100">
-            <div class="date" id="date"></div>
-            <div class="clock">
-              <span class="horloge" id="horloge"></span>
-              <div class="hand hours" id="aig_h"></div>
-              <div class="hand minutes" id="aig_m"></div>
-              <div class="hand seconds" id="aig_s"></div>
-              <div class="semaine" id="semaine"></div>
-              <div class="point"></div>
-              <div class="marker">
-                <span class="marker__1"></span>
-                <span class="marker__2"></span>
-                <span class="marker__3"></span>
-                <span class="marker__4"></span>
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" data-bs-toggle="tab"
+                  data-bs-target="#nav-tab-1">
+                  Aujourd'hui
+                </button>
+                <button class="nav-link" data-bs-toggle="tab"
+                  data-bs-target="#nav-tab-2">
+                  Quotidien
+                </button>
+                <button class="nav-link" data-bs-toggle="tab"
+                  data-bs-target="#nav-tab-3">
+                  Travail
+                </button>
+                <button class="nav-link" data-bs-toggle="tab"
+                  data-bs-target="#nav-tab-4">
+                  Calc
+                </button>
               </div>
+            </nav>
+            <div class="tab-content " id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-tab-1">
+                <span class="date" id="date"></span>
+                <span id="h_1"></span>
+              </div>
+              <div class="tab-pane fade show " id="nav-tab-2">
+                <span id="h_2"></span>
+              </div>
+              <div class="tab-pane fade" id="nav-tab-3">
+                <span id="h_3">
+                  <ul  id='listhoros'>
+                  </ul>
+                </span>
+              </div>
+              <div class="tab-pane fade" id="nav-tab-4">
+                <div id="calcul"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col ">
+
+          <div class="clock">
+            <span class="horloge" id="horloge"></span>
+            <div class="hand hours" id="aig_h"></div>
+            <div class="hand minutes" id="aig_m"></div>
+            <div class="hand seconds" id="aig_s"></div>
+            <div class="semaine" id="semaine"></div>
+            <div class="point"></div>
+            <div class="marker">
+              <span class="marker__1"></span>
+              <span class="marker__2"></span>
+              <span class="marker__3"></span>
+              <span class="marker__4"></span>
             </div>
           </div>
         </div>
@@ -75,91 +116,78 @@
             data-suncolor="#feffa4"
             data-cloudcolor="#93b8ed">VILLEFRANCHE-SUR-SAONE</a>
         </div>
-
-        <div class="col">
-          <div class="cadre h-100">
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab"
-                  data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-                  role="tab" aria-controls="nav-home" aria-selected="true">Aujourd'hui</button>
-                <button class="nav-link" id="nav-profile-tab"
-                  data-bs-toggle="tab" data-bs-target="#nav-profile"
-                  type="button" role="tab" aria-controls="nav-profile"
-                  aria-selected="false">Hebdo</button>
-                  <button class="nav-link" id="nav-t3-tab"
-                  data-bs-toggle="tab" data-bs-target="#nav-t3"
-                  type="button" role="tab" aria-controls="nav-t3"
-                  aria-selected="false">test3</button>
-                <button class="nav-link" id="nav-contact-tab"
-                  data-bs-toggle="tab" data-bs-target="#nav-contact"
-                  type="button" role="tab" aria-controls="nav-contact"
-                  aria-selected="false">Calc</button>
-              </div>
-            </nav>
-            <div class="tab-content " id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-home"
-                role="tabpanel" aria-labelledby="nav-home-tab"><span id="h_j"></span></div>
-                <div class="tab-pane fade show " id="nav-t3"
-                role="tabpanel" aria-labelledby="nav-t3-tab"><span id="h_t3"></span></div>
-              <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                aria-labelledby="nav-profile-tab"><span id="h_h"><ul id='listhoros'>
-                </ul></span></div>
-              <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                aria-labelledby="nav-contact-tab">
-                <div id="calcul"></div>
-              </div></div>
-          </div>
-
-        </div>
+        <script>
+        async function translate(text){
+              //console.log(text);
+              var sourceLang = 'en';
+              var targetLang = 'fr'; 
+              var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
+              //console.log(url);
+              const resp = await fetch(url);
+              var retourtableau = await resp.json();
+              var retour = "";
+              retourtableau[0].forEach(i=> retour+=i[0]);
+              return  retour; 
+            }
+            function ecrit(nom, json) {document.getElementById(nom).innerHTML = json;}
+            async function  recupurl(url){
+              let response = await fetch(url); 
+                if (response.ok) { 
+                  return await response.json();
+                } else {
+                  console.log("HTTP-Error: " + response.status);
+                } 
+              } 
+              var stringToHTML = function (str) {
+              var parser = new DOMParser();
+              var doc = parser.parseFromString(str, 'text/html');
+              return doc.body;
+              };
+        </script>
         <script>
           const preurl ="https://app.zenscrape.com/api/v1/get?apikey=ecde22d0-6cb5-11ee-8444-a5ff23c56f02&url=";
     
   
-      async function  recupurl(url){
-       let response = await fetch(url); 
-        if (response.ok) { 
-          return await response.json();
-        } else {
-          console.log("HTTP-Error: " + response.status);
-        } 
-       } 
-      async function remplihoroscope(){
-       recupurl("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_j",x.vierge)); 
-       recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today&nodate")
-       .then(  async (horos) =>  { 
-        compatibility = await translate(horos.compatibility);
-        mood = await translate(horos.mood);
-        description = await translate(horos.description);
-        horosvar = {
-        current_date: horos.current_date,
-        compatibility: compatibility,
-        lucky_time: horos.lucky_time,
-        lucky_number: horos.lucky_number,
-        mood: mood,
-        color: horos.color,
-        description: description
-      };console.log(horosvar);return horosvar;})   
-      .then(horos =>{
-        let    str = `<p >${horos.description}</p> `;
-  str += `<ul><li> Compatibilité : ${horos.compatibility} </li>
-    <li> Nombre porte bonheur: ${horos.lucky_number} </li>
-    <li> Meilleur moment : ${horos.lucky_time} </li>
-    <li> Couleur : ${horos.color} </li>
-    </ul>`;
-        ecrit("h_h",str);
-        
-      } ) ;
-      //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;
+
+    async function remplihoroscope(){
+      recupurl("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_1",x.vierge)); 
+            /* recupurl("https://us-central1-tf-natal.cloudfunctions.net/horoscopeapi_test?token=mmEUtLATc8w_UNnHuR2&sign=virgo&date=today&nodate")
+            .then(  async (horos) =>  { 
+              compatibility = await translate(horos.compatibility);
+              mood = await translate(horos.mood);
+              description = await translate(horos.description);
+              horosvar = {
+              current_date: horos.current_date,
+              compatibility: compatibility,
+              lucky_time: horos.lucky_time,
+              lucky_number: horos.lucky_number,
+              mood: mood,
+              color: horos.color,
+              description: description
+            };console.log(horosvar);return horosvar;})   
+            .then(horos =>{
+              let    str = `<p >${horos.description}</p> `;
+        str += `<ul><li> Compatibilité : ${horos.compatibility} </li>
+          <li> Nombre porte bonheur: ${horos.lucky_number} </li>
+          <li> Meilleur moment : ${horos.lucky_time} </li>
+          <li> Couleur : ${horos.color} </li>
+          </ul>`;
+              ecrit("h_h",str);
+              
+            } ) ;
+            //.then(horos => translate(horos.description).then(horostrad=>ecrit("h_h",horostrad))) ;*/
     }  
-    var stringToHTML = function (str) {
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(str, 'text/html');
-      return doc.body;
-      };
-    function horostest3 (){
+
+    const urlhorosgeneralH=  "https://www.horoscope.com/fr/horoscopes/general/horoscope-general-du-jour-hier.aspx?signe=6";
+    const urlhorosgeneralA=  "https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6";
+    const urlhorosgeneralD=  "https://www.horoscope.com/fr/horoscopes/general/horoscope-general-du-jour-demain.aspx?signe=6";
+    const urlhorostravailA=  "https://www.horoscope.com/fr/horoscopes/travail/horoscope-travail-du-jour-aujourdhui.aspx?signe=6";
+
+    horostest3 ("h_2",urlhorosgeneralA);
+    horostest3 ("h_3",urlhorostravailA);
+    function horostest3 (ou, url){
               var xhr = new XMLHttpRequest();
-        xhr.open("GET", preurl+"https://www.horoscope.com/fr/horoscopes/general/horoscope-general-daily-today.aspx?sign=6");
+        xhr.open("GET", preurl+url);
         xhr.onreadystatechange = function() {
           if (this.readyState < 4) return;
           if (this.status !== 200) {
@@ -172,28 +200,13 @@
             console.log(mainHorDiv);   
             const description = mainHorDiv.getElementsByTagName('p')[0];
             console.log(description);
-            document.getElementById("h_t3").appendChild(description); 
+            document.getElementById(ou).appendChild(description); 
           }
         };
         xhr.send(); 
     }
     
-    async function translate(text){
-      //console.log(text);
-      var sourceLang = 'en';
-      var targetLang = 'fr'; 
-      var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="+ sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(text); 
-      //console.log(url);
-      const resp = await fetch(url);
-      var retourtableau = await resp.json();
-      var retour = "";
-      retourtableau[0].forEach(i=> retour+=i[0]);
-      return  retour; 
-    }
-    function ecrit(nom, json) {document.getElementById(nom).innerHTML = json;}
-    const calcul = document.getElementById("calcul");
-    calcul.innerText=document.getElementById("calculatormain"); 
- 
+   
       const span_h = document.getElementById("aig_h");
       const span_m = document.getElementById("aig_m");
       const span_s = document.getElementById("aig_s");
@@ -249,7 +262,7 @@
 
       dateTime();
       remplihoroscope();
-      horostest3 ();
+      
       // END
     </script>
         <!-- forcast -->
