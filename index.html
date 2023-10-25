@@ -187,7 +187,7 @@
    // horostest3 ("h_3",urlhorostravailA);
     function horostest3 (ou, url){
               var xhr = new XMLHttpRequest();
-        xhr.open("GET", preurl+url);
+        xhr.open("GET", url);
         xhr.onreadystatechange = function() {
           if (this.readyState < 4) return;
           if (this.status !== 200) {
