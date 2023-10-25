@@ -144,11 +144,8 @@
               return doc.body;
               };
         </script>
-        <script>
-          const preurl ="https://app.zenscrape.com/api/v1/get?apikey=ecde22d0-6cb5-11ee-8444-a5ff23c56f02&url=";
-    
+        <script type="module">
           import puppeteer from 'puppeteer';
-
           (async () => {
             // Launch the browser and open a new blank page
             const browser = await puppeteer.launch();
@@ -179,6 +176,13 @@
 
             await browser.close();
           })();
+      </script>
+        <script>
+          const preurl ="https://app.zenscrape.com/api/v1/get?apikey=ecde22d0-6cb5-11ee-8444-a5ff23c56f02&url=";
+    
+          
+
+         
 
     async function remplihoroscope(){
       recupurl("https://kayoo123.github.io/astroo-api/jour.json").then(x => ecrit("h_1",x.vierge)); 
