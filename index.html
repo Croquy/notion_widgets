@@ -53,7 +53,7 @@
                 </button>
                 <button class="nav-link" data-bs-toggle="tab"
                   data-bs-target="#nav-tab-2">
-                  Quotidien
+                  Mot du jour
                 </button>
                 <button class="nav-link" data-bs-toggle="tab"
                   data-bs-target="#nav-tab-3">
@@ -72,6 +72,9 @@
               </div>
               <div class="tab-pane fade show " id="nav-tab-2">
                 <span id="h_2"></span>
+                 <div class="mot" id="mot"></div>
+                <div class="synonyme" id="synonyme"></div>
+                <div class="definition" id="definition"></div>
               </div>
               <div class="tab-pane fade" id="nav-tab-3">
                 <span id="h_3">
@@ -116,6 +119,26 @@
             data-suncolor="#feffa4"
             data-cloudcolor="#93b8ed">VILLEFRANCHE-SUR-SAONE</a>
         </div>
+         <script>
+    async function chargerMot() {
+      const response = await fetch("mots.json");
+      const data = await response.json();
+      const today = new Date().toISOString().split("T")[0];
+
+      // Chercher le mot du jour
+      const motDuJour = data.find(item => item.date === today);
+
+      if (motDuJour) {
+        document.getElementById("mot").textContent = motDuJour.mot;
+        document.getElementById("synonyme").textContent = "Synonyme : " + motDuJour.synonyme;
+        document.getElementById("definition").textContent = motDuJour.definition;
+      } else {
+        document.getElementById("mot").textContent = "Pas de mot enregistré pour aujourd'hui.";
+      }
+    }
+
+    chargerMot();
+  </script>
         <script>
         async function translate(text){
               //console.log(text);
@@ -232,13 +255,13 @@
       function clock() {
         var today = new Date();
         hrs = today.getHours();
-        if (hrs < 12) greet = "Bonjour";
-        else if (hrs >= 12 && hrs <= 17) greet = "Bon après midi ";
-        else if (hrs >= 17 && hrs <= 24) greet = "Bonne soirée  ";
+        if (hrs < 12) greet = "Bonjour, ";
+        else if (hrs >= 12 && hrs <= 17) greet = "Bon après midi, ";
+        else if (hrs >= 17 && hrs <= 24) greet = "Bonne soirée,  ";
         span_date.innerHTML =
           greet +
           " nous sommes le " +
-          today.toLocaleDateString("fr-FR", options);
+          today.toLocaleDateString("fr-FR", options) + "</br>";
         span_horloge.innerText =
           zeros(today.getHours()) +
           ":" +
