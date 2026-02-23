@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Générateur Officiel de Chiffrage Flou™</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 18px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎯 Générateur Officiel de Chiffrage Sans Périmètre</h2>
+  <button onclick="generateEstimate()">Générer un chiffrage approximatif</button>
+
+  <div id="result"></div>
+
+  <script>
+    const descriptions = [
+      "Optimisation transverse du flux documentaire avec adaptation contextuelle non spécifiée.",
+      "Mise en conformité évolutive d’un processus métier à définir ultérieurement.",
+      "Intégration dynamique d’un module fonctionnel en environnement semi-identifié.",
+      "Refonte partielle d’un workflow existant avec impacts potentiellement globaux.",
+      "Implémentation agile d’une demande métier encore conceptuelle."
+    ];
+
+    const complexities = [
+      "Complexité estimée : Moyenne mais sensible aux variables invisibles.",
+      "Complexité estimée : Faible en apparence, structurellement instable.",
+      "Complexité estimée : Modérée avec dépendances implicites.",
+      "Complexité estimée : Élevée selon ce que vous n’avez pas précisé.",
+      "Complexité estimée : Variable selon la réalité terrain."
+    ];
+
+    const durations = [
+      "Estimation : entre 3 et 12 jours ouvrés.",
+      "Estimation : entre 2 semaines et 4 mois selon périmètre réel.",
+      "Estimation : 15 à 45 jours, hors aléas non documentés.",
+      "Estimation : 8 à 60 jours selon découverte progressive.",
+      "Estimation : difficilement mesurable à ce stade."
+    ];
+
+    const budgets = [
+      "Budget prévisionnel : 4 500 € à 18 000 €.",
+      "Budget prévisionnel : 12 000 € à 65 000 €.",
+      "Budget prévisionnel : 8 000 € à 120 000 €.",
+      "Budget prévisionnel : dépendra fortement de la clarification initiale.",
+      "Budget prévisionnel : ajustable après définition du besoin réel."
+    ];
+
+    function randomItem(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+
+    function generateEstimate() {
+      const result = `
+Description :
+${randomItem(descriptions)}
+
+${randomItem(complexities)}
+${randomItem(durations)}
+${randomItem(budgets)}
+Risque projet : Présent mais maîtrisable en théorie.
+      `;
+      document.getElementById("result").innerText = result;
+    }
+  </script>
+
+</body>
+</html>
