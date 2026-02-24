@@ -29,12 +29,15 @@
   <div id="result"></div>
 
   <script>
+    const TJM = 890;
+
     const descriptions = [
       "Optimisation transverse du flux documentaire avec adaptation contextuelle non spécifiée.",
       "Mise en conformité évolutive d’un processus métier à définir ultérieurement.",
       "Intégration dynamique d’un module fonctionnel en environnement semi-identifié.",
       "Refonte partielle d’un workflow existant avec impacts potentiellement globaux.",
-      "Implémentation agile d’une demande métier encore conceptuelle."
+      "Implémentation agile d’une demande métier encore conceptuelle.",
+      "Alignement stratégique d’un besoin exprimé oralement sans documentation associée."
     ];
 
     const complexities = [
@@ -45,36 +48,48 @@
       "Complexité estimée : Variable selon la réalité terrain."
     ];
 
-    const durations = [
-      "Estimation : entre 3 et 12 jours ouvrés.",
-      "Estimation : entre 2 semaines et 4 mois selon périmètre réel.",
-      "Estimation : 15 à 45 jours, hors aléas non documentés.",
-      "Estimation : 8 à 60 jours selon découverte progressive.",
-      "Estimation : difficilement mesurable à ce stade."
+    const riskLevels = [
+      "Risque projet : Présent mais maîtrisable en théorie.",
+      "Risque projet : Dépendra fortement des éléments communiqués après coup.",
+      "Risque projet : Corrélé au niveau de précision initial.",
+      "Risque projet : Non quantifiable à ce stade."
     ];
 
-    const budgets = [
-      "Budget prévisionnel : 4 500 € à 18 000 €.",
-      "Budget prévisionnel : 12 000 € à 65 000 €.",
-      "Budget prévisionnel : 8 000 € à 120 000 €.",
-      "Budget prévisionnel : dépendra fortement de la clarification initiale.",
-      "Budget prévisionnel : ajustable après définition du besoin réel."
+    const politenessBonus = [
+      "",
+      "* Supplément de 15% applicable en cas de demande urgente sans contexte détaillé.",
+      "* Majoration relationnelle appliquée si la demande initiale ne comporte ni description ni formule de courtoisie.",
+      "* Ajustement tarifaire possible selon le niveau de flou détecté."
     ];
+
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
     function randomItem(array) {
       return array[Math.floor(Math.random() * array.length)];
     }
 
     function generateEstimate() {
+      const minDays = randomInt(5, 40);
+      const maxDays = randomInt(minDays + 1, 75);
+
+      const minBudget = minDays * TJM;
+      const maxBudget = maxDays * TJM;
+
       const result = `
 Description :
 ${randomItem(descriptions)}
 
 ${randomItem(complexities)}
-${randomItem(durations)}
-${randomItem(budgets)}
-Risque projet : Présent mais maîtrisable en théorie.
+Estimation : entre ${minDays} et ${maxDays} jours ouvrés.
+
+Budget prévisionnel : entre ${minBudget.toLocaleString()} € et ${maxBudget.toLocaleString()} €.
+
+${randomItem(riskLevels)}
+${randomItem(politenessBonus)}
       `;
+
       document.getElementById("result").innerText = result;
     }
   </script>
