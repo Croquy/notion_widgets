@@ -151,10 +151,10 @@
 
 const cases = {
   repetition: { gravity: "🟢 Gravité : Faible", class: "low", level: 1 },
-  impulsif: { gravity: "🟢 Gravité : Faible", class: "low", level: 1 },
-  insolence: { gravity: "🟠 Gravité : Moyenne", class: "medium", level: 2 },
-  mensonge: { gravity: "🔴 Gravité : Élevée", class: "high", level: 3 },
-  refus: { gravity: "⛔ Gravité : Intolérable", class: "critical", level: 4 }
+  impulsif: { gravity: "🟢 Gravité : Faible", class: "low", level: 2 },
+  insolence: { gravity: "🟠 Gravité : Moyenne", class: "medium", level: 3 },
+  mensonge: { gravity: "🔴 Gravité : Élevée", class: "high", level: 4 },
+  refus: { gravity: "⛔ Gravité : Intolérable", class: "critical", level: 5 }
 };
 
 const reformulations = {
@@ -198,13 +198,11 @@ const lowPunishments = [
   "Aider spontanément sur une petite tâche domestique."
 ];
 
-const characters = ["un chevalier", "une princesse", "un astronaute", "un ninja", "un pirate"];
-const victims = ["son chat", "une licorne", "un roi", "un dragon", "une fée"];
+const characters = ["un chevalier", "une princesse", "un ninja", "un pirate","un chat", "un roi", "une fée"];
 
 function generateThemedLetter() {
   const char = randomItem(characters);
-  const victim = randomItem(victims);
-  return `Rédiger une lettre d’excuse dans laquelle ${char} a été insolent envers ${victim}, avec morale finale sur le respect.`;
+  return `Excuse toi comme si tu étais ${char}.`;
 }
 
 const highPunishments = [
@@ -215,32 +213,73 @@ const highPunishments = [
 ];
 
 const medievalPunishments = {
-  1: [
+    1: [
+    "Balayage de l’entrée du château.",
+    "Nuit à la belle étoile dans la cour avec couverture et coussin rudimentaire.",
+    "Préparation d’une infusion d’herbes du jardin royal.",
+    "Aide aux jardiniers pour arroser les plantes du domaine."
+  ],
+  2: [
     "Nettoyage intégral des écuries royales et ramassage officiel du crottin.",
-    "Nuit symbolique dans l’écurie avec couverture rêche et paille réglementaire.",
+    "Nuit dans l’écurie avec couverture rêche et paille réglementaire.",
     "Consommation d’une soupe d’orties préparée selon la tradition ancestrale.",
     "Service comme porteur d’eau au puits du village durant une demi-journée."
   ],
-  2: [
+  3: [
     "Corvée prolongée dans les cuisines du château sous supervision du maître queux.",
     "Rédaction publique d’un serment d’honneur devant la cour familiale.",
     "Veillée obligatoire dans la tour de garde pour méditation sur le respect.",
     "Balayage complet de la grande salle du château à l’aube."
   ],
-  3: [
-    "Enfermement symbolique dans les oubliettes du royaume pour réflexion intensive.",
+  4: [
+    "Enfermement dans les oubliettes du royaume pour réflexion intensive.",
     "Transformation imaginaire en grenouille pour une durée indéterminée, coassement inclus.",
     "Exil temporaire au sommet de la Tour des Devoirs Infinis avec récitation du code parental.",
     "Service forcé comme écuyer du parent souverain avec révérence protocolaire."
   ],
-  4: [
+  5: [
     "Bannissement dramatique du royaume familial jusqu’à preuve de loyauté retrouvée.",
     "Condamnation à la Grande Quête du Rangement Éternel jusqu’à restauration complète de l’honneur.",
     "Métamorphose légendaire en créature des marais pendant quarante jours symboliques.",
     "Jugement solennel devant le Conseil Suprême des Parents avec sentence irrévocable."
   ]
 };
+const personnages = ["ninja", "astronaute", "chevalier", "hacker", "capitaine de vaisseau", "apprenti sorcier"];
+const autorites = ["roi", "commandant", "dragon ancestral", "reine pirate", "maître du temple", "IA suprême"];
+const situations = ["mission critique", "tournoi décisif", "conseil royal", "expédition dangereuse", "quête sacrée"];
 
+
+function genererInsolence() {
+  const perso = randomItem(personnages);
+  const autorite = randomItem(autorites);
+  const situation = randomItem(situations);
+
+  return  `
+    <div class="card">
+      <h2>Insolence - Exercice narratif</h2>
+      <p><strong>1.</strong> Décris précisément ce que tu as dit ou fait.</p>
+      <p><strong>2.</strong> Invente une histoire où un ${perso} se montre insolent envers un ${autorite} lors d'une ${situation}.</p>
+      <p>Montre les conséquences et l'évolution de la situation.</p>
+      <p><strong>3.</strong> Écris la morale : que devait faire le ${perso} différemment ?</p>
+    </div>
+  `;
+}
+
+function genererMensonge() {
+  const perso = randomItem(personnages);
+  const autorite = randomItem(autorites);
+  const situation = randomItem(situations);
+
+ return  `
+    <div class="card intolerable">
+      <h2>Mensonge - Exercice confiance</h2>
+      <p><strong>1.</strong> Résume les faits sans justification.</p>
+      <p><strong>2.</strong> Invente une histoire où un ${perso} cache la vérité à un ${autorite} pendant une ${situation}.</p>
+      <p>Décris l'effet domino et les conséquences sur la confiance.</p>
+      <p><strong>3.</strong> Présente ton histoire à l’oral en 3 minutes et explique la morale.</p>
+    </div>
+  `;
+}
 function randomItem(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
@@ -257,7 +296,13 @@ function handleCase(type) {
   else if (caseInfo.level === 2) {
     punishment = generateThemedLetter();
   }
-  else {
+    else if (caseInfo.level === 3) {
+    punishment = genererInsolence();
+  }
+   else if (caseInfo.level === 4) {
+    punishment = genererMensonge();
+  }
+  else  {
     punishment = randomItem(highPunishments);
   }
 
@@ -280,6 +325,16 @@ ${medieval}
   resultDiv.className = caseInfo.class;
   resultDiv.innerText = result;
 }
+
+</script>
+
+
+
+<!-- ======================================= -->
+<!-- VERSION EDUCATIVE DYNAMIQUE -->
+<!-- ======================================= -->
+
+<script>
 
 </script>
 
