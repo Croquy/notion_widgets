@@ -27,10 +27,9 @@
   }
 
   .button-group {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    justify-content: center;
   }
 
   button {
@@ -43,6 +42,7 @@
     color: white;
     cursor: pointer;
     transition: background 0.2s ease;
+    min-width: 0;
   }
 
   button:hover {
@@ -64,6 +64,25 @@
   /* Mobile optimization */
   @media (max-width: 600px) {
     body { padding: 10px; }
+    .container { padding: 15px; }
+    .button-group {
+      grid-template-columns: 1fr;
+    }
+    button { 
+      font-size: 15px; 
+      padding: 12px; 
+      width: 100%;
+    }
+    #result { font-size: 15px; }
+  }
+    .container { padding: 15px; }
+    button { 
+      font-size: 15px; 
+      padding: 12px; 
+      flex: 1 1 100%;
+    }
+    #result { font-size: 15px; }
+  }
     .container { padding: 15px; }
     button { font-size: 15px; padding: 12px; }
     #result { font-size: 15px; }
@@ -105,7 +124,7 @@
 
 .intolerable {
   background: linear-gradient(135deg, #3b0000, #1a0000);
-  border: 2px solid #8b0000;
+  border: 0px solid #8b0000;
   color: #ffeaea;
   animation:
     royalAppear 0.5s ease-out forwards,
@@ -270,7 +289,7 @@ function genererMensonge() {
   const situation = randomItem(situations);
 
  return  `
-    <div class="card intolerable">
+    <div class="card">
       <h2>Mensonge - Exercice confiance</h2>
       <p><strong>1.</strong> Résume les faits sans justification.</p>
       <p><strong>2.</strong> Invente une histoire où un ${perso} cache la vérité à un ${autorite} pendant une ${situation}.</p>
@@ -307,22 +326,35 @@ function handleCase(type) {
 
   const medieval = randomItem(medievalPunishments[caseInfo.level]);
 
-  const result = `
-${caseInfo.gravity}
-
-📌 Analyse :
-${reformulation}
-
-🛑 Sanction :
-${punishment}
-
-🏰 Sentence médiévale correspondante :
-${medieval}
+  let resultHTML = `
+  <div class="result-card">
+    <div class="gravity">${caseInfo.gravity}</div>
+    <div class="section">
+      <h3>📌 Analyse</h3>
+      <p>${reformulation}</p>
+    </div>
+    <div class="section">
+      <h3>🛑 Sanction</h3>
+      ${typeof punishment === 'string' && punishment.startsWith('<div') ? punishment : `<p>${punishment}</p>`}
+    </div>
+    <div class="section">
+      <h3>🏰 Sentence médiévale correspondante</h3>
+      <p>${medieval}</p>
+    </div>
+  </div>
   `;
 
   const resultDiv = document.getElementById("result");
   resultDiv.className = caseInfo.class;
-  resultDiv.innerHTML = result;
+  resultDiv.innerHTML = resultHTML;
+
+  // Animation uniquement sur la gravité
+  if(caseInfo.level >3){
+    const gravityEl = resultDiv.querySelector('.gravity');
+    if(gravityEl){
+      gravityEl.classList.add('intolerable');
+    }
+  }
 }
 
 </script>
